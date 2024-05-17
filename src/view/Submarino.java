@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
@@ -59,5 +60,42 @@ public class Submarino extends JPanel {
 		submarino[0][0] = quadrado;
 		g2d.draw(quadrado.quadrado);
 		g2d.fill(quadrado.quadrado);
+	}
+	
+	Integer confirmaObjeto(Point point){
+		if(this.sub1[0][0].quadrado.contains(point)){
+			return 1;
+		}
+		if(this.sub2[0][0].quadrado.contains(point)){
+			return 2;
+		}
+		if(this.sub1[0][0].quadrado.contains(point)){
+			return 3;
+		}
+		if(this.sub2[0][0].quadrado.contains(point)){
+			return 4;
+		}
+		return null;
+	}
+	
+	void pintarNavio(Graphics g, int navio) {
+		Graphics2D g2d = (Graphics2D) g;
+		if(navio == 1) {
+			g2d.setColor(Color.BLACK);
+			g2d.draw(sub1[0][0].quadrado);
+		}
+		else if(navio == 2) {
+			g2d.setColor(Color.BLACK);
+			g2d.draw(sub2[0][0].quadrado);
+		}
+		else if(navio == 3) {
+			g2d.setColor(Color.BLACK);
+			g2d.draw(sub3[0][0].quadrado);
+		}
+		else if(navio == 4) {
+			g2d.setColor(Color.BLACK);
+			g2d.draw(sub4[0][0].quadrado);
+		}
+		return;
 	}
 }

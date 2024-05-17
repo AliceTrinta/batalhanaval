@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
@@ -39,12 +40,12 @@ public class Cruzador extends JPanel{
 
 		g2d.setColor(Color.pink);
 		
-		desenharCouracado(g2d, 50, 100, this.cruzador1);
+		desenharCruzador(g2d, 50, 100, this.cruzador1);
 		
-		desenharCouracado(g2d, larguraQuadrado*5+50, 100, this.cruzador2);
+		desenharCruzador(g2d, larguraQuadrado*5+50, 100, this.cruzador2);
 	}
 	
-	void desenharCouracado(Graphics2D g2d, double inicioX, double inicioY, QuadradoDeTabuleiro[][] cruzador) {
+	void desenharCruzador(Graphics2D g2d, double inicioX, double inicioY, QuadradoDeTabuleiro[][] cruzador) {
 		for (int coluna = 0; coluna < tamanho; coluna++) {
 			double x = inicioX + coluna * larguraQuadrado;
 			double y = inicioY;
@@ -53,5 +54,34 @@ public class Cruzador extends JPanel{
 			g2d.draw(quadrado.quadrado);
 			g2d.fill(quadrado.quadrado);
 		}
+	}
+	
+	Integer confirmaObjeto(Point point){
+		for (int coluna = 0; coluna < tamanho; coluna++) {
+			if(this.cruzador1[0][coluna].quadrado.contains(point)){
+				return 1;
+			}
+			if(this.cruzador2[0][coluna].quadrado.contains(point)){
+				return 2;
+			}
+		}
+		return null;
+	}
+	
+	void pintarNavio(Graphics g, int navio) {
+		Graphics2D g2d = (Graphics2D) g;
+		if(navio == 1) {
+			for (int coluna = 0; coluna < this.tamanho; coluna++) {
+				g2d.setColor(Color.BLACK);
+				g2d.draw(cruzador1[0][coluna].quadrado);
+			}
+		}
+		else if(navio == 2) {
+			for (int coluna = 0; coluna < this.tamanho; coluna++) {
+				g2d.setColor(Color.BLACK);
+				g2d.draw(cruzador2[0][coluna].quadrado);
+			}
+		}
+		return;
 	}
 }

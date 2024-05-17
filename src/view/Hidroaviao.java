@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
@@ -86,6 +87,65 @@ public class Hidroaviao extends JPanel {
 		g2d.fill(quadrado2.quadrado);
 		g2d.draw(quadrado3.quadrado);
 		g2d.fill(quadrado3.quadrado);
+	}
+
+	Integer confirmaObjeto(Point point) {
+		if (this.h1[1][0].quadrado.contains(point) || this.h1[0][1].quadrado.contains(point)
+				|| this.h1[1][2].quadrado.contains(point)) {
+			return 1;
+		}
+		if (this.h2[1][0].quadrado.contains(point) || this.h2[0][1].quadrado.contains(point)
+				|| this.h2[1][2].quadrado.contains(point)) {
+			return 2;
+		}
+		if (this.h3[1][0].quadrado.contains(point) || this.h3[0][1].quadrado.contains(point)
+				|| this.h3[1][2].quadrado.contains(point)) {
+			return 3;
+		}
+		if (this.h4[1][0].quadrado.contains(point) || this.h4[0][1].quadrado.contains(point)
+				|| this.h4[1][2].quadrado.contains(point)) {
+			return 4;
+		}
+		if (this.h5[1][0].quadrado.contains(point) || this.h5[0][1].quadrado.contains(point)
+				|| this.h5[1][2].quadrado.contains(point)) {
+			return 5;
+		}
+		return null;
+	}
+	
+	void pintarNavio(Graphics g, int navio) {
+		Graphics2D g2d = (Graphics2D) g;
+		if(navio == 1) {
+			g2d.setColor(Color.BLACK);
+			g2d.draw(h1[1][0].quadrado);
+			g2d.draw(h1[0][1].quadrado);
+			g2d.draw(h1[1][2].quadrado);
+		}
+		else if(navio == 2) {
+			g2d.setColor(Color.BLACK);
+			g2d.draw(h2[1][0].quadrado);
+			g2d.draw(h2[0][1].quadrado);
+			g2d.draw(h2[1][2].quadrado);
+		}
+		else if(navio == 2) {
+			g2d.setColor(Color.BLACK);
+			g2d.draw(h3[1][0].quadrado);
+			g2d.draw(h3[0][1].quadrado);
+			g2d.draw(h3[1][2].quadrado);
+		}
+		else if(navio == 2) {
+			g2d.setColor(Color.BLACK);
+			g2d.draw(h4[1][0].quadrado);
+			g2d.draw(h4[0][1].quadrado);
+			g2d.draw(h4[1][2].quadrado);
+		}
+		else if(navio == 2) {
+			g2d.setColor(Color.BLACK);
+			g2d.draw(h5[1][0].quadrado);
+			g2d.draw(h5[0][1].quadrado);
+			g2d.draw(h5[1][2].quadrado);
+		}
+		return;
 	}
 
 }

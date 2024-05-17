@@ -49,4 +49,22 @@ public class Couracado extends JPanel{
 			g2d.fill(quadrado.quadrado);
 		}
 	}
+	
+	void pintarNavio(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
+		for (int coluna = 0; coluna < this.tamanho; coluna++) {
+			g2d.setColor(Color.BLACK);
+			g2d.draw(couracado[0][coluna].quadrado);
+		}
+		return;
+	}
+	
+	void deselecionarNavio(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
+		for (int coluna = 0; coluna < this.tamanho; coluna++) {
+			g2d.setColor(Color.WHITE);
+			g2d.draw(couracado[0][coluna].quadrado);
+		}
+		return;
+	}
 }

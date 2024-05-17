@@ -10,8 +10,8 @@ class QuadradoDeTabuleiro {
 	double colunaInicial;
 	double posicaoLinhaInicial;
 	double posicaoColunaInicial;
-	double altura = 40.0;
-	double largura = 40.0;
+	double altura = 35.0;
+	double largura = 35.0;
 	
 	boolean selecionado = false;
 

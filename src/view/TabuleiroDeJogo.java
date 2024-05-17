@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
@@ -64,5 +65,16 @@ public class TabuleiroDeJogo extends JPanel{
 				g2d.draw(quadrado.quadrado);
 			}
 		}
+	}
+	
+	QuadradoDeTabuleiro confirmaObjeto(Point point){
+		for (int i = 0; i < linhas; i++) {
+			for (int j = 0; j < colunas; j++) {
+				if (this.tabuleiro[i][j].quadrado.contains(point)) {
+					return this.tabuleiro[i][j];
+				}
+			}
+		}
+		return null;
 	}
 }

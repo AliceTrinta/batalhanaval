@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
@@ -58,5 +59,43 @@ public class Destroyer extends JPanel{
 			g2d.draw(quadrado.quadrado);
 			g2d.fill(quadrado.quadrado);
 		}
+	}
+	
+	Integer confirmaObjeto(Point point){
+		for (int coluna = 0; coluna < tamanho; coluna++) {
+			if(this.destroyer1[0][coluna].quadrado.contains(point)){
+				return 1;
+			}
+			if(this.destroyer2[0][coluna].quadrado.contains(point)){
+				return 2;
+			}
+			if(this.destroyer3[0][coluna].quadrado.contains(point)){
+				return 3;
+			}
+		}
+		return null;
+	}
+	
+	void pintarNavio(Graphics g, int navio) {
+		Graphics2D g2d = (Graphics2D) g;
+		if(navio == 1) {
+			for (int coluna = 0; coluna < this.tamanho; coluna++) {
+				g2d.setColor(Color.BLACK);
+				g2d.draw(destroyer1[0][coluna].quadrado);
+			}
+		}
+		else if(navio == 2) {
+			for (int coluna = 0; coluna < this.tamanho; coluna++) {
+				g2d.setColor(Color.BLACK);
+				g2d.draw(destroyer2[0][coluna].quadrado);
+			}
+		}
+		else if(navio == 3) {
+			for (int coluna = 0; coluna < this.tamanho; coluna++) {
+				g2d.setColor(Color.BLACK);
+				g2d.draw(destroyer3[0][coluna].quadrado);
+			}
+		}
+		return;
 	}
 }

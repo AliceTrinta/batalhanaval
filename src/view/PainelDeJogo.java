@@ -9,8 +9,8 @@ class PainelDeJogo extends JPanel implements MouseListener {
 	private static final long serialVersionUID = 1L;
 	int linhas;
 	int colunas;
-	double larguraRetangulo = 40.0;
-	double alturaRetangulo = 40.0;
+	double larguraRetangulo = 35.0;
+	double alturaRetangulo = 35.0;
 	int espacamentoTabuleiro = 60;
 	TabuleiroDeJogo tabuleiroDeAtaque;
 	TabuleiroDeJogo tabuleiroDeDefesa;
