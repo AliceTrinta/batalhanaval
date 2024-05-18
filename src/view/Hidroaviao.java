@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 public class Hidroaviao extends JPanel {
 	private static final long serialVersionUID = 1L;
 	int tamanho = 3;
+	int quantidade = 5;
 	QuadradoDeTabuleiro[][] h1;
 	QuadradoDeTabuleiro[][] h2;
 	QuadradoDeTabuleiro[][] h3;
@@ -145,6 +146,11 @@ public class Hidroaviao extends JPanel {
 			g2d.draw(h5[0][1].quadrado);
 			g2d.draw(h5[1][2].quadrado);
 		}
+		return;
+	}
+	
+	void deselecionarNavio(Graphics g) {
+		repaint();
 		return;
 	}
 

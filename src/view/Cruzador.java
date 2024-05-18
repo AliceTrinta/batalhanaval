@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 public class Cruzador extends JPanel{
 	private static final long serialVersionUID = 1L;
 	int tamanho = 4;
+	int quantidade = 2;
 	QuadradoDeTabuleiro[][] cruzador1;
 	QuadradoDeTabuleiro[][] cruzador2;
 	double alturaQuadrado;
@@ -82,6 +83,11 @@ public class Cruzador extends JPanel{
 				g2d.draw(cruzador2[0][coluna].quadrado);
 			}
 		}
+		return;
+	}
+	
+	void deselecionarNavio(Graphics g) {
+		repaint();
 		return;
 	}
 }

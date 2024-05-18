@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 public class Destroyer extends JPanel{
 	private static final long serialVersionUID = 1L;
 	int tamanho = 2;
+	int quantidade = 3;
 	QuadradoDeTabuleiro[][] destroyer1;
 	QuadradoDeTabuleiro[][] destroyer2;
 	QuadradoDeTabuleiro[][] destroyer3;
@@ -96,6 +97,11 @@ public class Destroyer extends JPanel{
 				g2d.draw(destroyer3[0][coluna].quadrado);
 			}
 		}
+		return;
+	}
+	
+	void deselecionarNavio(Graphics g) {
+		repaint();
 		return;
 	}
 }

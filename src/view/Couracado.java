@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 public class Couracado extends JPanel{
 	private static final long serialVersionUID = 1L;
 	int tamanho = 5;
+	int quantidade = 1;
 	QuadradoDeTabuleiro[][] couracado;
 	double alturaQuadrado;
 	double larguraQuadrado;
@@ -62,8 +63,7 @@ public class Couracado extends JPanel{
 	void deselecionarNavio(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		for (int coluna = 0; coluna < this.tamanho; coluna++) {
-			g2d.setColor(Color.WHITE);
-			g2d.draw(couracado[0][coluna].quadrado);
+			repaint();
 		}
 		return;
 	}

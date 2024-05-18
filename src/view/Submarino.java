@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 public class Submarino extends JPanel {
 	private static final long serialVersionUID = 1L;
 	int tamanho = 1;
+	int quantidade = 4;
 	QuadradoDeTabuleiro[][] sub1;
 	QuadradoDeTabuleiro[][] sub2;
 	QuadradoDeTabuleiro[][] sub3;
@@ -96,6 +97,11 @@ public class Submarino extends JPanel {
 			g2d.setColor(Color.BLACK);
 			g2d.draw(sub4[0][0].quadrado);
 		}
+		return;
+	}
+	
+	void deselecionarNavio(Graphics g) {
+		repaint();
 		return;
 	}
 }

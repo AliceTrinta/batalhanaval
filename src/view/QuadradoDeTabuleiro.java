@@ -6,6 +6,7 @@ import java.awt.geom.Rectangle2D;
 
 class QuadradoDeTabuleiro {
 	Rectangle2D.Double quadrado;
+	String color = "BRANCO";
 	double linhaInicial;
 	double colunaInicial;
 	double posicaoLinhaInicial;

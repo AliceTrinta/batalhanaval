@@ -57,6 +57,9 @@ public class DividirJanela extends JFrame {
         SwingUtilities.invokeLater(() -> {
             TelaDeSelecao tela = new TelaDeSelecao();
             tela.setVisible(true);
+            tela.setFocusable(true);
+    		tela.requestFocus();
+    		
         });
     }
 }
