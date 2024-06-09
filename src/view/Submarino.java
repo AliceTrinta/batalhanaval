@@ -8,32 +8,26 @@ import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
-public class Submarino extends JPanel {
+
+class Submarino extends JPanel {
 	private static final long serialVersionUID = 1L;
 	int tamanho = 1;
-	int quantidade = 4;
-	QuadradoDeTabuleiro[][] sub1;
-	QuadradoDeTabuleiro[][] sub2;
-	QuadradoDeTabuleiro[][] sub3;
-	QuadradoDeTabuleiro[][] sub4;
-	double alturaQuadrado;
-	double larguraQuadrado;
-
-	Submarino() {
-		this.sub1 = new QuadradoDeTabuleiro[1][1];
-		this.sub2 = new QuadradoDeTabuleiro[1][1];
-		this.sub3 = new QuadradoDeTabuleiro[1][1];
-		this.sub4 = new QuadradoDeTabuleiro[1][1];
-		inicializarSubmarino();
-		this.alturaQuadrado = sub1[0][0].altura;
-		this.larguraQuadrado = sub1[0][0].largura;
+	QuadradoDeTabuleiro s1;
+	QuadradoDeTabuleiro s2;
+	QuadradoDeTabuleiro s3;
+	QuadradoDeTabuleiro s4;
+	double ladoQuadrado;
+	
+	Submarino(){
+		inicializaSubmarinos();
+		this.ladoQuadrado = s1.lado;
 	}
-
-	void inicializarSubmarino() {
-		this.sub1[0][0] = new QuadradoDeTabuleiro(0, 0, 0, 0);
-		this.sub2[0][0] = new QuadradoDeTabuleiro(0, 0, 0, 0);
-		this.sub3[0][0] = new QuadradoDeTabuleiro(0, 0, 0, 0);
-		this.sub4[0][0] = new QuadradoDeTabuleiro(0, 0, 0, 0);
+	
+	void inicializaSubmarinos(){
+		this.s1 = new QuadradoDeTabuleiro(0, 0, 0, 0);
+		this.s2 = new QuadradoDeTabuleiro(0, 0, 0, 0);
+		this.s3 = new QuadradoDeTabuleiro(0, 0, 0, 0);
+		this.s4 = new QuadradoDeTabuleiro(0, 0, 0, 0);
 	}
 
 	@Override
@@ -45,63 +39,101 @@ public class Submarino extends JPanel {
 
 		g2d.setColor(Color.blue);
 
-		desenharSubmarino(g2d, 50, 100, this.sub1);
+		this.s1 = new QuadradoDeTabuleiro(0, 0, 50, 100);
+		g2d.draw(this.s1.quadrado);
+		g2d.fill(this.s1.quadrado);
 
-		desenharSubmarino(g2d, larguraQuadrado * 2 + 50, 100, this.sub2);
-
-		desenharSubmarino(g2d, larguraQuadrado * 4 + 50, 100, this.sub3);
+		this.s2 = new QuadradoDeTabuleiro(0, 0, this.ladoQuadrado * 2 + 50, 100);
+		g2d.draw(this.s2.quadrado);
+		g2d.fill(this.s2.quadrado);
 		
-		desenharSubmarino(g2d, larguraQuadrado * 6 + 50, 100, this.sub4);
-	}
-
-	void desenharSubmarino(Graphics2D g2d, double inicioX, double inicioY, QuadradoDeTabuleiro[][] submarino) {
-		double x = inicioX;
-		double y = inicioY;
-		QuadradoDeTabuleiro quadrado = new QuadradoDeTabuleiro(0, 0, x, y);
-		submarino[0][0] = quadrado;
-		g2d.draw(quadrado.quadrado);
-		g2d.fill(quadrado.quadrado);
+		this.s2 = new QuadradoDeTabuleiro(0, 0, this.ladoQuadrado * 4 + 50, 100);
+		g2d.draw(this.s2.quadrado);
+		g2d.fill(this.s2.quadrado);
+		
+		this.s2 = new QuadradoDeTabuleiro(0, 0, this.ladoQuadrado * 6 + 50, 100);
+		g2d.draw(this.s2.quadrado);
+		g2d.fill(this.s2.quadrado);
 	}
 	
 	Integer confirmaObjeto(Point point){
-		if(this.sub1[0][0].quadrado.contains(point)){
+		if(this.s1.quadrado.contains(point)){
 			return 1;
 		}
-		if(this.sub2[0][0].quadrado.contains(point)){
+		if(this.s2.quadrado.contains(point)){
 			return 2;
 		}
-		if(this.sub1[0][0].quadrado.contains(point)){
+		if(this.s3.quadrado.contains(point)){
 			return 3;
 		}
-		if(this.sub2[0][0].quadrado.contains(point)){
+		if(this.s4.quadrado.contains(point)){
 			return 4;
 		}
 		return null;
 	}
 	
-	void pintarNavio(Graphics g, int navio) {
+	public void selecionaNavio(Graphics g, int navio) {
 		Graphics2D g2d = (Graphics2D) g;
 		if(navio == 1) {
 			g2d.setColor(Color.BLACK);
-			g2d.draw(sub1[0][0].quadrado);
+			g2d.draw(this.s1.quadrado);
 		}
 		else if(navio == 2) {
 			g2d.setColor(Color.BLACK);
-			g2d.draw(sub2[0][0].quadrado);
+			g2d.draw(this.s2.quadrado);
 		}
 		else if(navio == 3) {
 			g2d.setColor(Color.BLACK);
-			g2d.draw(sub3[0][0].quadrado);
+			g2d.draw(this.s3.quadrado);
 		}
 		else if(navio == 4) {
 			g2d.setColor(Color.BLACK);
-			g2d.draw(sub4[0][0].quadrado);
+			g2d.draw(this.s4.quadrado);
 		}
 		return;
 	}
 	
-	void deselecionarNavio(Graphics g) {
-		repaint();
+	public void deselecionaNavio(Graphics g, String navio) {
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setColor(Color.BLUE);
+		if(navio == "s1") {
+			g2d.draw(this.s1.quadrado);
+			g2d.fill(this.s1.quadrado);
+		}
+		else if(navio == "s2") {
+			g2d.draw(this.s2.quadrado);
+			g2d.fill(this.s2.quadrado);
+		}
+		else if(navio == "s3") {
+			g2d.draw(this.s3.quadrado);
+			g2d.fill(this.s3.quadrado);
+		}
+		else if(navio == "s4") {
+			g2d.draw(this.s4.quadrado);
+			g2d.fill(this.s4.quadrado);
+		}
+		return;
+	}
+	
+	void removeNavio(Graphics g, String navio) {
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setColor(Color.WHITE);
+		if(navio == "s1") {
+			g2d.draw(this.s1.quadrado);
+			g2d.fill(this.s1.quadrado);
+		}
+		else if(navio == "s2") {
+			g2d.draw(this.s2.quadrado);
+			g2d.fill(this.s2.quadrado);
+		}
+		else if(navio == "s3") {
+			g2d.draw(this.s3.quadrado);
+			g2d.fill(this.s3.quadrado);
+		}
+		else if(navio == "s4") {
+			g2d.draw(this.s4.quadrado);
+			g2d.fill(this.s4.quadrado);
+		}
 		return;
 	}
 }

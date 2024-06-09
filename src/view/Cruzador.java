@@ -8,27 +8,24 @@ import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
-public class Cruzador extends JPanel{
+class Cruzador extends JPanel {
 	private static final long serialVersionUID = 1L;
 	int tamanho = 4;
-	int quantidade = 2;
-	QuadradoDeTabuleiro[][] cruzador1;
-	QuadradoDeTabuleiro[][] cruzador2;
-	double alturaQuadrado;
-	double larguraQuadrado;
+	double ladoQuadrado;
+	QuadradoDeTabuleiro[][] c1;
+	QuadradoDeTabuleiro[][] c2;
 	
 	Cruzador(){
-		this.cruzador1 = new QuadradoDeTabuleiro[1][tamanho];
-		this.cruzador2 = new QuadradoDeTabuleiro[1][tamanho];
-		inicializarCruzador();
-		this.alturaQuadrado = cruzador1[0][0].altura;
-		this.larguraQuadrado = cruzador1[0][0].largura;
+		inicializarCruzadores();
+		this.ladoQuadrado = c1[0][0].lado;
 	}
 	
-	void inicializarCruzador() {
+	void inicializarCruzadores() {
+		this.c1 = new QuadradoDeTabuleiro[1][this.tamanho];
+		this.c2 =  new QuadradoDeTabuleiro[1][this.tamanho];
 		for (int j = 0; j < tamanho; j++) {
-			this.cruzador1[0][j] = new QuadradoDeTabuleiro(0, 0, 0, 0);
-			this.cruzador2[0][j] = new QuadradoDeTabuleiro(0, 0, 0, 0);
+			this.c1[0][j] = new QuadradoDeTabuleiro(0, 0, 0, 0);
+			this.c2[0][j] = new QuadradoDeTabuleiro(0, 0, 0, 0);
 		}
 	}
 	
@@ -40,54 +37,83 @@ public class Cruzador extends JPanel{
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		g2d.setColor(Color.pink);
-		
-		desenharCruzador(g2d, 50, 100, this.cruzador1);
-		
-		desenharCruzador(g2d, larguraQuadrado*5+50, 100, this.cruzador2);
-	}
-	
-	void desenharCruzador(Graphics2D g2d, double inicioX, double inicioY, QuadradoDeTabuleiro[][] cruzador) {
+
 		for (int coluna = 0; coluna < tamanho; coluna++) {
-			double x = inicioX + coluna * larguraQuadrado;
-			double y = inicioY;
-			QuadradoDeTabuleiro quadrado = new QuadradoDeTabuleiro(0, coluna, x, y);
-			cruzador[0][coluna] = quadrado;
-			g2d.draw(quadrado.quadrado);
-			g2d.fill(quadrado.quadrado);
+			double x = 50 + coluna * ladoQuadrado;
+			this.c1[0][coluna] = new QuadradoDeTabuleiro(0, coluna, x, 100);
+			g2d.draw(this.c1[0][coluna].quadrado);
+			g2d.fill(this.c1[0][coluna].quadrado);
+		}
+		
+		for (int coluna = 0; coluna < tamanho; coluna++) {
+			double x = ladoQuadrado*5+50 + coluna * ladoQuadrado;
+			this.c2[0][coluna] = new QuadradoDeTabuleiro(0, coluna, x, 100);
+			g2d.draw(this.c2[0][coluna].quadrado);
+			g2d.fill(this.c2[0][coluna].quadrado);
 		}
 	}
 	
 	Integer confirmaObjeto(Point point){
 		for (int coluna = 0; coluna < tamanho; coluna++) {
-			if(this.cruzador1[0][coluna].quadrado.contains(point)){
+			if(this.c1[0][coluna].quadrado.contains(point)){
 				return 1;
 			}
-			if(this.cruzador2[0][coluna].quadrado.contains(point)){
+			if(this.c2[0][coluna].quadrado.contains(point)){
 				return 2;
 			}
 		}
 		return null;
 	}
 	
-	void pintarNavio(Graphics g, int navio) {
+	void selecionaNavio(Graphics g, int navio) {
 		Graphics2D g2d = (Graphics2D) g;
 		if(navio == 1) {
 			for (int coluna = 0; coluna < this.tamanho; coluna++) {
 				g2d.setColor(Color.BLACK);
-				g2d.draw(cruzador1[0][coluna].quadrado);
+				g2d.draw(this.c1[0][coluna].quadrado);
 			}
 		}
 		else if(navio == 2) {
 			for (int coluna = 0; coluna < this.tamanho; coluna++) {
 				g2d.setColor(Color.BLACK);
-				g2d.draw(cruzador2[0][coluna].quadrado);
+				g2d.draw(this.c2[0][coluna].quadrado);
 			}
 		}
 		return;
 	}
 	
-	void deselecionarNavio(Graphics g) {
-		repaint();
+	void deselecionaNavio(Graphics g, String navio) {
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setColor(Color.pink);
+		if(navio == "c1") {
+			for (int coluna = 0; coluna < this.tamanho; coluna++) {
+				g2d.draw(this.c1[0][coluna].quadrado);
+				g2d.fill(this.c1[0][coluna].quadrado);
+			}
+		} else if(navio == "c2") {
+			for (int coluna = 0; coluna < this.tamanho; coluna++) {
+				g2d.draw(this.c2[0][coluna].quadrado);
+				g2d.fill(this.c2[0][coluna].quadrado);
+			}
+		}
 		return;
 	}
+	
+	void removeNavio(Graphics g, String navio) {
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setColor(Color.WHITE);
+		if(navio == "c1") {
+			for (int coluna = 0; coluna < this.tamanho; coluna++) {
+				g2d.draw(this.c1[0][coluna].quadrado);
+				g2d.fill(this.c1[0][coluna].quadrado);
+			}
+		} else if(navio == "c2") {
+			for (int coluna = 0; coluna < this.tamanho; coluna++) {
+				g2d.draw(this.c2[0][coluna].quadrado);
+				g2d.fill(this.c2[0][coluna].quadrado);
+			}
+		}
+		return;
+	}
+
 }

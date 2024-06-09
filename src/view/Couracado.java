@@ -7,63 +7,60 @@ import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
-public class Couracado extends JPanel{
+class Couracado extends JPanel{
 	private static final long serialVersionUID = 1L;
 	int tamanho = 5;
-	int quantidade = 1;
+	double ladoQuadrado;
 	QuadradoDeTabuleiro[][] couracado;
-	double alturaQuadrado;
-	double larguraQuadrado;
 	
 	Couracado(){
-		this.couracado = new QuadradoDeTabuleiro[1][tamanho];
-		inicializarCouracado();
-		this.alturaQuadrado = couracado[0][0].altura;
-		this.larguraQuadrado = couracado[0][0].largura;
+		this.couracado = inicializarCouracado();
+		this.ladoQuadrado = couracado[0][0].lado;
 	}
 	
-	void inicializarCouracado() {
-		for (int j = 0; j < tamanho; j++) {
-			this.couracado[0][j] = new QuadradoDeTabuleiro(0, 0, 0, 0);
+	QuadradoDeTabuleiro[][] inicializarCouracado() {
+		QuadradoDeTabuleiro[][] couracado = new QuadradoDeTabuleiro[1][this.tamanho];
+		for (int j = 0; j < 5; j++) {
+			couracado[0][j] = new QuadradoDeTabuleiro(0, 0, 0, 0);
 		}
+		return couracado;
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
-
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
 		g2d.setColor(Color.lightGray);
 		
-		desenharCouracado(g2d, 50, 100);
-	}
-	
-	void desenharCouracado(Graphics2D g2d, double inicioX, double inicioY) {
 		for (int coluna = 0; coluna < tamanho; coluna++) {
-			double x = inicioX + coluna * larguraQuadrado;
-			double y = inicioY;
-			QuadradoDeTabuleiro quadrado = new QuadradoDeTabuleiro(0, coluna, x, y);
-			this.couracado[0][coluna] = quadrado;
-			g2d.draw(quadrado.quadrado);
-			g2d.fill(quadrado.quadrado);
+			double x = 50 + coluna * this.ladoQuadrado;
+			this.couracado[0][coluna] = new QuadradoDeTabuleiro(0, coluna, x, 100);
+			g2d.draw(this.couracado[0][coluna].quadrado);
+			g2d.fill(this.couracado[0][coluna].quadrado);
 		}
 	}
 	
-	void pintarNavio(Graphics g) {
+	void selecionaNavio(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		for (int coluna = 0; coluna < this.tamanho; coluna++) {
 			g2d.setColor(Color.BLACK);
-			g2d.draw(couracado[0][coluna].quadrado);
+			g2d.draw(this.couracado[0][coluna].quadrado);
 		}
 		return;
 	}
 	
-	void deselecionarNavio(Graphics g) {
+	void deselecionaNavio(Graphics g) {
+		repaint();
+		return;
+	}
+	
+	void removeNavio(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		for (int coluna = 0; coluna < this.tamanho; coluna++) {
-			repaint();
+			g2d.setColor(Color.WHITE);
+			g2d.draw(this.couracado[0][coluna].quadrado);
+			g2d.fill(this.couracado[0][coluna].quadrado);
 		}
 		return;
 	}
