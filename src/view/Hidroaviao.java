@@ -58,7 +58,7 @@ class Hidroaviao extends JPanel {
 
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-		g2d.setColor(Color.red);
+		g2d.setColor(Color.ORANGE);
 
 		this.h1[1][0] = new QuadradoDeTabuleiro(0, 0, 50, 50);
 		this.h1[0][1] = new QuadradoDeTabuleiro(0, 0, 50 - this.ladoQuadrado, 50 + this.ladoQuadrado);
@@ -180,7 +180,7 @@ class Hidroaviao extends JPanel {
 	
 	void deselecionaNavio(Graphics g, String navio) {
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.setColor(Color.RED);
+		g2d.setColor(Color.ORANGE);
 		if(navio == "h1") {
 			g2d.draw(this.h1[1][0].quadrado);
 			g2d.draw(this.h1[0][1].quadrado);

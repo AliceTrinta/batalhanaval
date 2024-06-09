@@ -25,7 +25,7 @@ class PainelDeJogo extends JFrame implements MouseListener {
 	JButton botao;
 	Boolean acao;
 	
-	PainelDeJogo(char [][] tabuleiroAtaque, String nomeJogador){
+	PainelDeJogo(char [][] tabuleiroAtaque, char [][] tabuleiroDefesa, String nomeJogador){
 		super("Batalha Naval");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1600, 1000);
@@ -33,7 +33,7 @@ class PainelDeJogo extends JFrame implements MouseListener {
 		setLayout(new BorderLayout());
 		this.nomeJogador = nomeJogador;
 		this.tabuleiroAtaque = new Tabuleiro(tabuleiroAtaque);
-		this.tabuleiroDefesa = new Tabuleiro(15, 15);
+		this.tabuleiroDefesa = new Tabuleiro(tabuleiroDefesa);
         this.botao = new JButton("Terminar turno");
         
         JPanel painelEsquerda = new JPanel(new BorderLayout());

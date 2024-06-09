@@ -20,8 +20,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import control.AccessControl;
+import model.ObservadorConfiguraTabuleiro;
 
-class ConfiguraTabuleiro extends JFrame implements KeyListener {
+class ConfiguraTabuleiro extends JFrame implements KeyListener, ObservadorConfiguraTabuleiro {
 	private static final long serialVersionUID = 1L;
 	AccessControl control;
 	String nomeJogador;
@@ -138,8 +139,8 @@ class ConfiguraTabuleiro extends JFrame implements KeyListener {
 					this.armaSelecionada = "Couracado";
 					this.couracado.selecionaNavio(this.componenteAtual.getGraphics());
 					return;
-				} else if (this.cruzador.getClass() == this.componenteAtual.getClass()
-						&& this.armaSelecionada == null && this.quantidadeCruzador > 0) {
+				} else if (this.cruzador.getClass() == this.componenteAtual.getClass() && this.armaSelecionada == null
+						&& this.quantidadeCruzador > 0) {
 					Integer numeroDoCruzador = this.cruzador.confirmaObjeto(pontoRelativo);
 					if (numeroDoCruzador != null) {
 						switch (numeroDoCruzador) {
@@ -156,8 +157,8 @@ class ConfiguraTabuleiro extends JFrame implements KeyListener {
 						}
 					}
 					return;
-				} else if (this.destroyer.getClass() == this.componenteAtual.getClass()
-						&& this.armaSelecionada == null && this.quantidadeDestroyer > 0) {
+				} else if (this.destroyer.getClass() == this.componenteAtual.getClass() && this.armaSelecionada == null
+						&& this.quantidadeDestroyer > 0) {
 					Integer numeroDoDestroyer = this.destroyer.confirmaObjeto(pontoRelativo);
 					switch (numeroDoDestroyer) {
 					case 1:
@@ -176,8 +177,8 @@ class ConfiguraTabuleiro extends JFrame implements KeyListener {
 						break;
 					}
 					return;
-				} else if (this.hidroaviao.getClass() == this.componenteAtual.getClass()
-						&& this.armaSelecionada == null && this.quantidadeHidroaviao > 0) {
+				} else if (this.hidroaviao.getClass() == this.componenteAtual.getClass() && this.armaSelecionada == null
+						&& this.quantidadeHidroaviao > 0) {
 					Integer numeroDoHidroaviao = this.hidroaviao.confirmaObjeto(pontoRelativo);
 					switch (numeroDoHidroaviao) {
 					case 1:
@@ -229,42 +230,31 @@ class ConfiguraTabuleiro extends JFrame implements KeyListener {
 					}
 					return;
 				} else if (this.tabuleiro.getClass() == this.componenteAtual.getClass()) {
-					//TODO Nao permitir insercao de arma fora dos limites
+					// TODO Nao permitir insercao de arma fora dos limites
 					QuadradoDeTabuleiro quadrado = this.tabuleiro.confirmaObjeto(clickPoint);
 					if (quadrado != null && this.armaSelecionada != null) {
 						if (this.armaSelecionada == "Couracado" && this.quantidadeCouracado > 0) {
-							this.tabuleiro.couracadoNoTabuleiro(this.componenteAtual.getGraphics(), pontoRelativo,
-									quadrado);
-							this.quantidadeCouracado--;
-							this.couracado.removeNavio(this.couracado.getGraphics());
+							this.tabuleiro.matriz = control.salvarMudancasNoTabuleiro(this.tabuleiro.matriz,
+									this.nomeJogador, 'C', (int) quadrado.linhaInicial, (int) quadrado.colunaInicial);
 						} else if (this.armaSelecionada == "c1"
 								|| this.armaSelecionada == "c2" && this.quantidadeCruzador > 0) {
-							this.tabuleiro.cruzadorNoTabuleiro(this.componenteAtual.getGraphics(), pontoRelativo,
-									quadrado);
-							this.quantidadeCruzador--;
-							this.cruzador.removeNavio(this.cruzador.getGraphics(), this.armaSelecionada);
+							this.tabuleiro.matriz = control.salvarMudancasNoTabuleiro(this.tabuleiro.matriz,
+									this.nomeJogador, 'c', (int) quadrado.linhaInicial, (int) quadrado.colunaInicial);
 						} else if (this.armaSelecionada == "d1" || this.armaSelecionada == "d2"
 								|| this.armaSelecionada == "d3" && this.quantidadeDestroyer > 0) {
-							this.tabuleiro.destroyerNoTabuleiro(this.componenteAtual.getGraphics(), pontoRelativo,
-									quadrado);
-							this.quantidadeDestroyer--;
-							this.destroyer.removeNavio(this.destroyer.getGraphics(), this.armaSelecionada);
+							this.tabuleiro.matriz = control.salvarMudancasNoTabuleiro(this.tabuleiro.matriz,
+									this.nomeJogador, 'd', (int) quadrado.linhaInicial, (int) quadrado.colunaInicial);
 						} else if (this.armaSelecionada == "h1" || this.armaSelecionada == "h2"
 								|| this.armaSelecionada == "h3" || this.armaSelecionada == "h4"
 								|| this.armaSelecionada == "h5" && this.quantidadeHidroaviao > 0) {
-							this.tabuleiro.hidroaviaoNoTabuleiro(this.componenteAtual.getGraphics(), pontoRelativo,
-									quadrado);
-							this.quantidadeHidroaviao--;
-							this.hidroaviao.removeNavio(this.hidroaviao.getGraphics(), this.armaSelecionada);
+							this.tabuleiro.matriz = control.salvarMudancasNoTabuleiro(this.tabuleiro.matriz,
+									this.nomeJogador, 'h', (int) quadrado.linhaInicial, (int) quadrado.colunaInicial);
 						} else if (this.armaSelecionada == "s1" || this.armaSelecionada == "s2"
 								|| this.armaSelecionada == "s3" || this.armaSelecionada == "s4"
 								|| this.armaSelecionada == "s5" && this.quantidadeSubmarino > 0) {
-							this.tabuleiro.submarinoNoTabuleiro(this.componenteAtual.getGraphics(), pontoRelativo,
-									quadrado);
-							this.quantidadeSubmarino--;
-							this.submarino.removeNavio(this.submarino.getGraphics(), this.armaSelecionada);
+							this.tabuleiro.matriz = control.salvarMudancasNoTabuleiro(this.tabuleiro.matriz,
+									this.nomeJogador, 's', (int) quadrado.linhaInicial, (int) quadrado.colunaInicial);
 						}
-						control.salvarMudancasNoTabuleiro(this.tabuleiro.atualizaMatriz(), this.nomeJogador);
 						this.armaSelecionada = null;
 						return;
 					} else if (quadrado != null) {
@@ -285,7 +275,7 @@ class ConfiguraTabuleiro extends JFrame implements KeyListener {
 							this.armaSelecionada = "Submarino";
 							// TODO: MOVER arma
 							break;
-						case "VERMELHO":
+						case "LARANJA":
 							this.armaSelecionada = "Hidroaviao";
 							// TODO: MOVER arma
 							break;
@@ -355,6 +345,48 @@ class ConfiguraTabuleiro extends JFrame implements KeyListener {
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void couracadoNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
+		this.tabuleiro.couracadoNoTabuleiro(this.componenteAtual.getGraphics(), linhaInicial, colunaInicial,
+				posicaoCorreta);
+		this.quantidadeCouracado--;
+		this.couracado.removeNavio(this.couracado.getGraphics());
+	}
+
+	@Override
+	public void cruzadorNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
+		this.tabuleiro.cruzadorNoTabuleiro(this.componenteAtual.getGraphics(), linhaInicial, colunaInicial,
+				posicaoCorreta);
+		this.quantidadeCruzador--;
+		this.cruzador.removeNavio(this.cruzador.getGraphics(), this.armaSelecionada);
+
+	}
+
+	@Override
+	public void destroyerNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
+		this.tabuleiro.destroyerNoTabuleiro(this.componenteAtual.getGraphics(), linhaInicial, colunaInicial,
+				posicaoCorreta);
+		this.quantidadeDestroyer--;
+		this.destroyer.removeNavio(this.destroyer.getGraphics(), this.armaSelecionada);
+
+	}
+
+	@Override
+	public void hidroaviaoNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
+		this.tabuleiro.hidroaviaoNoTabuleiro(this.componenteAtual.getGraphics(), linhaInicial, colunaInicial,
+				posicaoCorreta);
+		this.quantidadeHidroaviao--;
+		this.hidroaviao.removeNavio(this.hidroaviao.getGraphics(), this.armaSelecionada);
+	}
+
+	@Override
+	public void submarinoNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
+		this.tabuleiro.submarinoNoTabuleiro(this.componenteAtual.getGraphics(), linhaInicial, colunaInicial,
+				posicaoCorreta);
+		this.quantidadeSubmarino--;
+		this.submarino.removeNavio(this.submarino.getGraphics(), this.armaSelecionada);
 	}
 
 }

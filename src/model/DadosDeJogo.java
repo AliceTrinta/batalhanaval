@@ -1,6 +1,6 @@
 package model;
 
-class DadosDeJogo {
+class DadosDeJogo extends TopicosConfiguraTabuleiro{
 	private static DadosDeJogo instance;
 	Jogador jogador1;
 	Jogador jogador2;
