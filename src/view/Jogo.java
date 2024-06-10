@@ -44,7 +44,7 @@ class Jogo {
                     jogadores = control.carregaPartida(file);
                     if(jogadores.size() == 3) {
 						nomeJogador1 = jogadores.get(2);
-						nomeJogador2 = jogadores.get(1);
+						nomeJogador2 = jogadores.get(0);
 					}
 					else {
 						nomeJogador1 = jogadores.get(0);
