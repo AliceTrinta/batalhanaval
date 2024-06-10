@@ -1,5 +1,8 @@
 package control;
 
+import java.io.File;
+import java.util.List;
+
 import model.ObservadorConfiguraTabuleiro;
 
 public class AccessControl {
@@ -13,6 +16,15 @@ public class AccessControl {
 	public void criaJogadores(String nomeJogador1, String nomeJogador2) {
 		jogo.criaJogadores(nomeJogador1, nomeJogador2);
 		return;
+	}
+	
+	public void salvarPartida(File file, String turno) {
+		jogo.salvarPartida(file, turno);
+		return;
+	}
+	
+	public List<String> carregaPartida(File file){
+		return jogo.carregaPartida(file);
 	}
 	
 	public void adicionaObserver(ObservadorConfiguraTabuleiro observador) {

@@ -44,8 +44,4 @@ class ConfiguraJogadores extends JFrame {
 	String getNomeJogador2() {
 		return nomeJogador2.getText();
 	}
-	
-	JButton getComecarButton() {
-		return this.comecarButton;
-	}
 }

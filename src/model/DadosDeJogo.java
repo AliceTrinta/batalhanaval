@@ -4,6 +4,7 @@ class DadosDeJogo extends TopicosConfiguraTabuleiro{
 	private static DadosDeJogo instance;
 	Jogador jogador1;
 	Jogador jogador2;
+	String turno;
 	
 	DadosDeJogo() {
 		jogador1 = new Jogador();

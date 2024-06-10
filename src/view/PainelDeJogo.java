@@ -10,15 +10,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import control.AccessControl;
+
 class PainelDeJogo extends JFrame implements MouseListener {
 	private static final long serialVersionUID = 1L;
+	AccessControl control;
 	String nomeJogador;
 	Tabuleiro tabuleiroAtaque;
 	Tabuleiro tabuleiroDefesa;
@@ -31,6 +39,7 @@ class PainelDeJogo extends JFrame implements MouseListener {
         setSize(1600, 1000);
 		addMouseListener(this);
 		setLayout(new BorderLayout());
+		this.control = new AccessControl();
 		this.nomeJogador = nomeJogador;
 		this.tabuleiroAtaque = new Tabuleiro(tabuleiroAtaque);
 		this.tabuleiroDefesa = new Tabuleiro(tabuleiroDefesa);
@@ -62,6 +71,19 @@ class PainelDeJogo extends JFrame implements MouseListener {
 
 		this.getContentPane().add(painelCentral, BorderLayout.CENTER);
 		this.getContentPane().add(painelInferior, BorderLayout.SOUTH);
+
+        JMenuBar menuBar = new JMenuBar();
+        JMenu menu = new JMenu("Sair da Partida");
+        JMenuItem itemSalvarSair = new JMenuItem("Salvar e sair");
+        itemSalvarSair.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               salvarPartidaESair();
+            }
+        });
+        menu.add(itemSalvarSair);
+        menuBar.add(menu);
+        setJMenuBar(menuBar);
 		
 		botao.addActionListener(new ActionListener() {
             @Override
@@ -77,6 +99,17 @@ class PainelDeJogo extends JFrame implements MouseListener {
             }
         });
 		
+	}
+	
+	void salvarPartidaESair() {
+		JFileChooser fileChooser = new JFileChooser();
+        int option = fileChooser.showSaveDialog(this);
+
+        if (option == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            control.salvarPartida(file, this.nomeJogador);
+            System.exit(0);
+        }
 	}
 
 	@Override
