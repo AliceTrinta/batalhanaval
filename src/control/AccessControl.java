@@ -8,9 +8,11 @@ import model.ObservadorConfiguraTabuleiro;
 public class AccessControl {
 
 	Jogo jogo;
+	Ataque ataque;
 
 	public AccessControl() {
 		this.jogo = new Jogo();
+		this.ataque = new Ataque();
 	}
 
 	public void criaJogadores(String nomeJogador1, String nomeJogador2) {
@@ -52,5 +54,9 @@ public class AccessControl {
 	
 	public char[][] tabuleiroDefesa(String nomeJogador) {
 		return jogo.pegaTabuleiroDefesa(nomeJogador);
+	}
+	
+	public void realizaAtaque(int linha, int coluna, String nomeAtacante) {
+		ataque.realizaAtaque(linha, coluna, nomeAtacante);
 	}
 }

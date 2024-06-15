@@ -1,10 +1,18 @@
 package model;
 
 class Cruzador {
+	int linhaInicial;
+	int colunaInicial;
+	Boolean afundou;
 
-	Cruzador() {
+	Cruzador(int linhaInicial, int colunaInicial) {
+		this.linhaInicial = linhaInicial;
+		this.colunaInicial = colunaInicial;
+		this.afundou = false;
 	}
 
+	Cruzador(){}
+	
 	boolean casasAdajacentes(char[][] matriz, int linhaInicial, int colunaInicial, int orientacao) {
 		if (orientacao == 90) {
 			for (int i = linhaInicial - 1; i <= linhaInicial + 4; i++) {

@@ -6,6 +6,7 @@ public interface ObservadorConfiguraTabuleiro {
 //	void deselecionarDestroyer();
 //	void deselecionarHidroaviao();
 //	void deselecionarSubmarino();
+	void pintarQuadrado(int linha, int coluna, String cor);
 	void couracadoNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta);
 	void cruzadorNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta);
 	void destroyerNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta);

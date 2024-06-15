@@ -1,9 +1,17 @@
 package model;
 
 class Destroyer {
+	int linhaInicial;
+	int colunaInicial;
+	Boolean afundou;
 
-	Destroyer() {
+	Destroyer(int linhaInicial, int colunaInicial) {
+		this.linhaInicial = linhaInicial;
+		this.colunaInicial = colunaInicial;
+		this.afundou = false;
 	}
+	
+	Destroyer(){}
 
 	boolean casasAdajacentes(char[][] matriz, int linhaInicial, int colunaInicial, int orientacao) {
 		if (orientacao == 90) {

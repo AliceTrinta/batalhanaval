@@ -389,4 +389,10 @@ class ConfiguraTabuleiro extends JFrame implements KeyListener, ObservadorConfig
 		this.submarino.removeNavio(this.submarino.getGraphics(), this.armaSelecionada);
 	}
 
+	@Override
+	public void pintarQuadrado(int linha, int coluna, String cor) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

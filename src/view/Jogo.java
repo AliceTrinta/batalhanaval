@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 import control.AccessControl;
 
@@ -20,7 +24,7 @@ class Jogo {
 		nomeJogador1 = null;
 		nomeJogador2 = null;
 	}
-	
+
 	void telaInicial() {
 		TelaInicial tela1 = new TelaInicial();
 		tela1.setVisible(true);
@@ -32,28 +36,27 @@ class Jogo {
 			}
 		});
 		tela1.carregarJogo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	JFileChooser fileChooser = new JFileChooser();
-                int option = fileChooser.showOpenDialog(tela1);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				int option = fileChooser.showOpenDialog(tela1);
 
-                if (option == JFileChooser.APPROVE_OPTION) {
-                    File file = fileChooser.getSelectedFile();
-                    List<String> jogadores = new ArrayList<>();
-                    tela1.dispose();
-                    jogadores = control.carregaPartida(file);
-                    if(jogadores.size() == 3) {
+				if (option == JFileChooser.APPROVE_OPTION) {
+					File file = fileChooser.getSelectedFile();
+					List<String> jogadores = new ArrayList<>();
+					tela1.dispose();
+					jogadores = control.carregaPartida(file);
+					if (jogadores.size() == 3) {
 						nomeJogador1 = jogadores.get(2);
 						nomeJogador2 = jogadores.get(0);
-					}
-					else {
+					} else {
 						nomeJogador1 = jogadores.get(0);
 						nomeJogador2 = jogadores.get(1);
 					}
-                    comecarAtaques();
-                }
-            }
-        });
+					comecarAtaques();
+				}
+			}
+		});
 	}
 
 	void iniciar() {
@@ -65,7 +68,7 @@ class Jogo {
 			public void actionPerformed(ActionEvent e) {
 				nomeJogador1 = tela1.getNomeJogador1();
 				nomeJogador2 = tela1.getNomeJogador2();
-				
+
 				control.criaJogadores(nomeJogador1, nomeJogador2);
 
 				tela1.dispose();
@@ -95,7 +98,7 @@ class Jogo {
 								control.criaTabuleiroDeDefesa(nomeJogador1);
 								control.criaTabuleiroDeDefesa(nomeJogador2);
 								comecarAtaques();
-								
+
 							}
 						});
 					}
@@ -103,52 +106,72 @@ class Jogo {
 			}
 		});
 	}
-	
+
 	void comecarAtaques() {
 		char[][] tabuleiroAtaque1 = control.tabuleiroAtaque(nomeJogador1);
 		char[][] tabuleiroDefesa1 = control.tabuleiroDefesa(nomeJogador1);
-        PainelDeJogo painelJogador1 = new PainelDeJogo(tabuleiroAtaque1, tabuleiroDefesa1, nomeJogador1);
-        painelJogador1.setVisible(true);
-        painelJogador1.setFocusable(true);
-        painelJogador1.requestFocus();
-        
-        painelJogador1.botao.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		painelJogador1.dispose();
-        		
-        		char[][] tabuleiroAtaque2 = control.tabuleiroAtaque(nomeJogador2);
-				char[][] tabuleiroDefesa2 = control.tabuleiroDefesa(nomeJogador2);
-	            PainelDeJogo painelJogador2 = new PainelDeJogo(tabuleiroAtaque2, tabuleiroDefesa2, nomeJogador2);
-	            painelJogador2.setVisible(true);
-	            painelJogador2.setFocusable(true);
-	            painelJogador2.requestFocus();
-        		
-	            painelJogador2.botao.addActionListener(new ActionListener() {
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						painelJogador2.dispose();
+
+		char[][] tabuleiroAtaque2 = control.tabuleiroAtaque(nomeJogador2);
+		char[][] tabuleiroDefesa2 = control.tabuleiroDefesa(nomeJogador2);
+
+		JFrame frame = new JFrame("Batalha Naval");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(1600, 1000);
+
+		PainelDeJogo painelJogador1 = new PainelDeJogo(tabuleiroAtaque1, tabuleiroDefesa1, nomeJogador1);
+		PainelDeJogo painelJogador2 = new PainelDeJogo(tabuleiroAtaque2, tabuleiroDefesa2, nomeJogador2);
+		
+		JMenuBar menuBar = new JMenuBar();
+		JMenu menu = new JMenu("Sair da Partida");
+		JMenuItem itemSalvarSair = new JMenuItem("Salvar e sair");
+		itemSalvarSair.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fileChooser = new JFileChooser();
+				int option = fileChooser.showSaveDialog(frame);
+
+				if (option == JFileChooser.APPROVE_OPTION) {
+					
+					String jogadorNoTurno = null;
+					if(painelJogador1.atual) {
+						jogadorNoTurno = nomeJogador1;
+					} else {
+						jogadorNoTurno = nomeJogador2;
 					}
-				});
-        	}
-            
-//            PainelDeJogo painelJogador2 = new PainelDeJogo(nomeJogador2);
-//
-//            painelJogador1.addNavigationListener(event -> {
-//                frame.remove(painelJogador1);
-//                frame.add(painelJogador2);
-//                frame.revalidate();
-//                frame.repaint();
-//            });
-//
-//            painelJogador2.addNavigationListener(event -> {
-//                frame.remove(painelJogador2);
-//                frame.add(painelJogador1);
-//                frame.revalidate();
-//                frame.repaint();
-//            });
-//
-//            frame.add(painelJogador1);
-//            frame.setVisible(true);
-        });
+					File file = fileChooser.getSelectedFile();
+					control.salvarPartida(file, jogadorNoTurno);
+					System.exit(0);
+				}
+			}
+		});
+		menu.add(itemSalvarSair);
+		menuBar.add(menu);
+		frame.setJMenuBar(menuBar);
+
+		painelJogador1.addNavigationListener(event -> {
+			frame.remove(painelJogador1);
+			frame.add(painelJogador2);
+			frame.revalidate();
+			frame.repaint();
+			control.removeObserver(painelJogador1);
+			control.adicionaObserver(painelJogador2);
+			painelJogador1.atual = false;
+			painelJogador2.atual = true;
+		});
+
+		painelJogador2.addNavigationListener(event -> {
+			frame.remove(painelJogador2);
+			frame.add(painelJogador1);
+			frame.revalidate();
+			frame.repaint();
+			control.removeObserver(painelJogador2);
+			control.adicionaObserver(painelJogador1);
+			painelJogador1.atual = true;
+			painelJogador2.atual = false;
+		});
+
+		frame.add(painelJogador1);
+		frame.setVisible(true);
+		control.adicionaObserver(painelJogador1);
 	}
 }

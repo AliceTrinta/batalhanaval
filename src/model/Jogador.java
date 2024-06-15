@@ -4,6 +4,7 @@ class Jogador {
 	String nome;
 	char[][] tabuleiroAtaque;
 	char[][] tabuleiroDefesa;
+	Tabuleiro tabuleiroPrincipal;
 
 	Jogador() {
 	}
@@ -22,6 +23,7 @@ class Jogador {
 
 	void setTabuleiroAtaque(char[][] tabuleiro) {
 		this.tabuleiroAtaque = tabuleiro;
+		this.tabuleiroPrincipal = new Tabuleiro(tabuleiroAtaque);
 	}
 	
 	char[][] getTabuleiroDefesa() {

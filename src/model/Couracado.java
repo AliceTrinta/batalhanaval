@@ -1,8 +1,17 @@
 package model;
 
 class Couracado {
+	int linhaInicial;
+	int colunaInicial;
+	Boolean afundou;
+
+	Couracado(int linhaInicial, int colunaInicial) {
+		this.linhaInicial = linhaInicial;
+		this.colunaInicial = colunaInicial;
+		this.afundou = false;
+	}
 	
-	Couracado() {}
+	Couracado(){}
 
 	boolean casasAdajacentes(char[][] matriz, int linhaInicial, int colunaInicial, int orientacao) {
 		if (orientacao == 90) {
@@ -31,7 +40,7 @@ class Couracado {
 
 	boolean posicaoValida(char[][] matriz, int linhaInicial, int colunaInicial, int orientacao) {
 		if (orientacao == 90) {
-			return  linhaInicial + 4 < 15 && casasAdajacentes(matriz, linhaInicial, colunaInicial, orientacao);
+			return linhaInicial + 4 < 15 && casasAdajacentes(matriz, linhaInicial, colunaInicial, orientacao);
 		} else {
 			return colunaInicial + 4 <= 15 && casasAdajacentes(matriz, linhaInicial, colunaInicial, orientacao);
 		}

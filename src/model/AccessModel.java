@@ -135,4 +135,13 @@ public class AccessModel {
 		novaMatriz[linha][coluna] = 's';
 		return novaMatriz;
 	}
+	
+	public void pintarQuadrado(int linha, int coluna, String cor) {
+		this.dados.pintarQuadrado(linha, coluna, cor);
+	}
+//	public Boolean acertouCouracado(int linha, int coluna){
+//		Boolean afundouNavio = false;
+//		afundouNavio = this.dados.jogador1.tabuleiroAtaque.verificarCouracadoAfundou(linha, coluna);
+//		return afundouNavio;
+//	}
 }

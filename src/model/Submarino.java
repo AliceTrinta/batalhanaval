@@ -1,9 +1,17 @@
 package model;
 
 class Submarino {
+	int linhaInicial;
+	int colunaInicial;
+	Boolean afundou;
 
-	Submarino() {
+	Submarino(int linhaInicial, int colunaInicial) {
+		this.linhaInicial = linhaInicial;
+		this.colunaInicial = colunaInicial;
+		this.afundou = false;
 	}
+	
+	Submarino(){}
 
 	boolean casasAdajacentes(char[][] matriz, int linhaInicial, int colunaInicial, int orientacao) {
 		for (int i = linhaInicial - 1; i <= colunaInicial + 1; i++) {

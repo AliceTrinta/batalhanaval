@@ -81,4 +81,10 @@ public class TopicosConfiguraTabuleiro {
 			observador.submarinoNoTabuleiro(linhaInicial, colunaInicial, posicaoCorreta);
 		}
 	}
+	
+	public void pintarQuadrado(int linha, int coluna, String cor) {
+		for (ObservadorConfiguraTabuleiro observador : observadores) {
+			observador.pintarQuadrado(linha, coluna, cor);
+		}
+	}
 }
