@@ -32,7 +32,7 @@ class PainelDeJogo extends JPanel implements MouseListener, ObservadorConfiguraT
 	Tabuleiro tabuleiroAtaque;
 	Tabuleiro tabuleiroDefesa;
 	JPanel painelTabuleiroDefesa;
-	QuadradoDeTabuleiro componenteAtual;
+	Component componenteAtual;
 	List<NavigationListener> listeners = new ArrayList<>();
 	JButton botao;
 	Boolean acao;
@@ -116,7 +116,6 @@ class PainelDeJogo extends JPanel implements MouseListener, ObservadorConfiguraT
 			QuadradoDeTabuleiro quadrado = this.tabuleiroDefesa.confirmaObjeto(convertedPoint);
 			if (quadrado != null) {
 				control.realizaAtaque((int) quadrado.linhaInicial, (int) quadrado.colunaInicial, this.nomeJogador);
-				componenteAtual = quadrado;
 				return;
 			}
 		}
