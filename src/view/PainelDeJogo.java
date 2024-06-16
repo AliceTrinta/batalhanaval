@@ -103,7 +103,6 @@ class PainelDeJogo extends JPanel implements MouseListener, ObservadorConfiguraT
 	}
 
 	void handleMouseClick(MouseEvent e) {
-		System.out.print("Entrou");
 		Point clickPoint = e.getPoint();
 		Component source = e.getComponent().getComponentAt(clickPoint).getComponentAt(clickPoint);
 		this.componenteAtual = null;
@@ -147,7 +146,7 @@ class PainelDeJogo extends JPanel implements MouseListener, ObservadorConfiguraT
 
 	@Override
 	public void pintarQuadrado(int linha, int coluna, String cor) {
-		Graphics2D g2d = (Graphics2D) this.getGraphics();
+		Graphics2D g2d = (Graphics2D) this.componenteAtual.getGraphics();
 		if (cor == "ROSA") {
 			g2d.setColor(Color.PINK);
 			g2d.fill(this.tabuleiroDefesa.tabuleiro[linha][coluna].quadrado);
