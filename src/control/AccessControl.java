@@ -43,6 +43,10 @@ public class AccessControl {
 		return jogo.salvaTabuleiroAtaque(tabuleiro, nomeJogador, tipoArma, linha, coluna);
 	}
 	
+	public char[][] salvaTabuleiroDefesa(char[][] tabuleiro, String nomeJogador){
+		return jogo.salvaTabuleiroDefesa(tabuleiro, nomeJogador);
+	}
+	
 	public void criaTabuleiroDeDefesa(String nomeJogador) {
 		jogo.criaTabuleiroDeDefesa(nomeJogador);
 		return;

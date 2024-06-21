@@ -79,6 +79,17 @@ public class AccessModel {
 		}
 		return null;
 	}
+	
+	public char[][] salvaTabuleiroDefesa(char[][] tabuleiro, String nomeJogador) {
+		if (this.dados.jogador1.getNome().equals(nomeJogador)) {
+			this.dados.jogador1.setTabuleiroDefesa(tabuleiro);
+			return this.dados.jogador1.getTabuleiroDefesa();
+		} else if (this.dados.jogador2.getNome().equals(nomeJogador)) {
+			this.dados.jogador2.setTabuleiroDefesa(tabuleiro);
+			return this.dados.jogador2.getTabuleiroDefesa();
+		}
+		return null;
+	}
 
 	public String pegaNomeJogador1() {
 		return this.dados.jogador1.getNome();

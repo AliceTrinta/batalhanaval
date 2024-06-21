@@ -136,6 +136,10 @@ class Jogo {
 		accessModel.salvaTabuleiroAtaque(novoTabuleiro, nomeJogador);
 		return novoTabuleiro;
 	}
+	
+	char[][] salvaTabuleiroDefesa(char[][] tabuleiro, String nomeJogador) {
+		return accessModel.salvaTabuleiroDefesa(tabuleiro, nomeJogador);
+	}
 
 	void criaTabuleiroDeDefesa(String nomeJogador) {
 		char[][] tabuleiro = new char[15][15];

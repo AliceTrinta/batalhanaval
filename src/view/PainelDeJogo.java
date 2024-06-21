@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -91,6 +92,27 @@ class PainelDeJogo extends JPanel implements MouseListener, ObservadorConfiguraT
 			listener.navigate(event);
 		}
 	}
+	
+	@Override
+	protected void paintComponent(Graphics g) {
+		Graphics2D g2d = (Graphics2D) g;
+		for(int i = 0; i < 15; i++) {
+			for(int j = 0; j < 15; j++) {
+				QuadradoDeTabuleiro quadrado = this.tabuleiroDefesa.tabuleiro[i][j];
+				char c = this.tabuleiroDefesa.matriz[i][j];
+				if (c == 'A') {
+					g2d.setColor(Color.PINK);
+					g2d.fill(quadrado.quadrado);
+				} else if (c == 'a') {
+					g2d.setColor(Color.BLUE);
+					g2d.fill(quadrado.quadrado);
+				} else if (c == 'V') {
+					g2d.setColor(Color.RED);
+					g2d.fill(quadrado.quadrado);
+				}
+			}
+		}
+	}
 
 	void addNavigationListener(NavigationListener listener) {
 		listeners.add(listener);
@@ -147,16 +169,28 @@ class PainelDeJogo extends JPanel implements MouseListener, ObservadorConfiguraT
 	@Override
 	public void pintarQuadrado(int linha, int coluna, String cor) {
 		Graphics2D g2d = (Graphics2D) this.componenteAtual.getGraphics();
+		QuadradoDeTabuleiro quadrado = new QuadradoDeTabuleiro(0,0,0,0);
+		quadrado = this.tabuleiroDefesa.tabuleiro[linha][coluna];
 		if (cor == "ROSA") {
 			g2d.setColor(Color.PINK);
-			g2d.fill(this.tabuleiroDefesa.tabuleiro[linha][coluna].quadrado);
+			g2d.fill(quadrado.quadrado);
+			char[][] novoTabuleiro = this.tabuleiroDefesa.insereAtualizaMatriz(quadrado, 'A');
+			this.tabuleiroDefesa.tabuleiro[linha][coluna].cor = "ROSA";
+			this.control.salvaTabuleiroDefesa(novoTabuleiro, this.nomeJogador);
 		} else if (cor == "AZUL") {
-			g2d.setColor(Color.CYAN);
-			g2d.fill(this.tabuleiroDefesa.tabuleiro[linha][coluna].quadrado);
+			g2d.setColor(Color.BLUE);
+			g2d.fill(quadrado.quadrado);
+			char[][] novoTabuleiro = this.tabuleiroDefesa.insereAtualizaMatriz(quadrado, 'a');
+			this.tabuleiroDefesa.tabuleiro[linha][coluna].cor = "AZUL";
+			this.control.salvaTabuleiroDefesa(novoTabuleiro, this.nomeJogador);
 		} else if (cor == "VERMELHO") {
 			g2d.setColor(Color.RED);
-			g2d.fill(this.tabuleiroDefesa.tabuleiro[linha][coluna].quadrado);
+			g2d.fill(quadrado.quadrado);
+			char[][] novoTabuleiro = this.tabuleiroDefesa.insereAtualizaMatriz(quadrado, 'V');
+			this.tabuleiroDefesa.tabuleiro[linha][coluna].cor = "VERMELHO";
+			this.control.salvaTabuleiroDefesa(novoTabuleiro, this.nomeJogador);
 		}
+		this.tabuleiroDefesa.matriz = control.tabuleiroDefesa(nomeJogador);
 	}
 
 	@Override

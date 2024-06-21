@@ -120,7 +120,7 @@ class Jogo {
 
 		PainelDeJogo painelJogador1 = new PainelDeJogo(tabuleiroAtaque1, tabuleiroDefesa1, nomeJogador1);
 		PainelDeJogo painelJogador2 = new PainelDeJogo(tabuleiroAtaque2, tabuleiroDefesa2, nomeJogador2);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("Sair da Partida");
 		JMenuItem itemSalvarSair = new JMenuItem("Salvar e sair");
@@ -131,9 +131,9 @@ class Jogo {
 				int option = fileChooser.showSaveDialog(frame);
 
 				if (option == JFileChooser.APPROVE_OPTION) {
-					
+
 					String jogadorNoTurno = null;
-					if(painelJogador1.atual) {
+					if (painelJogador1.atual) {
 						jogadorNoTurno = nomeJogador1;
 					} else {
 						jogadorNoTurno = nomeJogador2;

@@ -61,6 +61,12 @@ class Tabuleiro extends JPanel {
 					this.tabuleiro[i][j].cor = "AZUL";
 				} else if (this.matriz[i][j] == 'h') {
 					this.tabuleiro[i][j].cor = "LARANJA";
+				} else if (this.matriz[i][j] == 'A') {
+					this.tabuleiro[i][j].cor = "ROSA";
+				} else if (this.matriz[i][j] == 'a') {
+					this.tabuleiro[i][j].cor = "AZUL";
+				} else if (this.matriz[i][j] == 'V') {
+					this.tabuleiro[i][j].cor = "VERMELHO";
 				}
 			}
 		}
@@ -111,6 +117,9 @@ class Tabuleiro extends JPanel {
 					} else if (this.tabuleiro[linha][coluna].cor == "LARANJA") {
 						g2d.setColor(Color.ORANGE);
 						g2d.fill(this.tabuleiro[linha][coluna].quadrado);
+					} else if (this.tabuleiro[linha][coluna].cor == "VERMELHO") {
+						g2d.setColor(Color.RED);
+						g2d.fill(this.tabuleiro[linha][coluna].quadrado);
 					}
 				} else {
 					this.tabuleiro[linha][coluna] = new QuadradoDeTabuleiro(linha, coluna, x, y);
@@ -136,7 +145,7 @@ class Tabuleiro extends JPanel {
 	void couracadoNoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
 		int tamanho = 5;
 		Graphics2D g2d = (Graphics2D) g;
-		if(posicaoCorreta) {
+		if (posicaoCorreta) {
 			g2d.setColor(Color.LIGHT_GRAY);
 		} else {
 			g2d.setColor(Color.RED);
@@ -151,7 +160,7 @@ class Tabuleiro extends JPanel {
 	void cruzadorNoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
 		int tamanho = 4;
 		Graphics2D g2d = (Graphics2D) g;
-		if(posicaoCorreta) {
+		if (posicaoCorreta) {
 			g2d.setColor(Color.PINK);
 		} else {
 			g2d.setColor(Color.RED);
@@ -166,7 +175,7 @@ class Tabuleiro extends JPanel {
 	void destroyerNoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
 		int tamanho = 2;
 		Graphics2D g2d = (Graphics2D) g;
-		if(posicaoCorreta) {
+		if (posicaoCorreta) {
 			g2d.setColor(Color.GREEN);
 		} else {
 			g2d.setColor(Color.RED);
@@ -180,7 +189,7 @@ class Tabuleiro extends JPanel {
 
 	void submarinoNoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
 		Graphics2D g2d = (Graphics2D) g;
-		if(posicaoCorreta) {
+		if (posicaoCorreta) {
 			g2d.setColor(Color.BLUE);
 		} else {
 			g2d.setColor(Color.RED);
@@ -192,7 +201,7 @@ class Tabuleiro extends JPanel {
 
 	void hidroaviaoNoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
 		Graphics2D g2d = (Graphics2D) g;
-		if(posicaoCorreta) {
+		if (posicaoCorreta) {
 			g2d.setColor(Color.ORANGE);
 		} else {
 			g2d.setColor(Color.RED);
@@ -205,22 +214,22 @@ class Tabuleiro extends JPanel {
 		this.tabuleiro[linhaInicial + 1][colunaInicial + 1].cor = "LARANJA";
 	}
 
-	char[][] insereAtualizaMatriz(QuadradoDeTabuleiro quadradoInicial, char tipoDeArma){
+	char[][] insereAtualizaMatriz(QuadradoDeTabuleiro quadradoInicial, char tipoDeArma) {
 		int linha = (int) quadradoInicial.linhaInicial;
 		int coluna = (int) quadradoInicial.colunaInicial;
-		switch(tipoDeArma) {
+		switch (tipoDeArma) {
 		case 'C':
-			for(int i = 0; i < 5; i++) {
+			for (int i = 0; i < 5; i++) {
 				this.matriz[linha][coluna + i] = 'C';
 			}
 			break;
 		case 'c':
-			for(int i = 0; i < 4; i++) {
+			for (int i = 0; i < 4; i++) {
 				this.matriz[linha][coluna + i] = 'c';
 			}
 			break;
 		case 'd':
-			for(int i = 0; i < 2; i++) {
+			for (int i = 0; i < 2; i++) {
 				this.matriz[linha][coluna + i] = 'd';
 			}
 			break;
@@ -231,6 +240,12 @@ class Tabuleiro extends JPanel {
 			break;
 		case 's':
 			this.matriz[linha][coluna] = 's';
+			break;
+		case 'A':
+			this.matriz[linha][coluna] = 'A';
+			break;
+		case 'a':
+			this.matriz[linha][coluna] = 'a';
 			break;
 		}
 		return this.matriz;
