@@ -247,6 +247,9 @@ class Tabuleiro extends JPanel {
 		case 'a':
 			this.matriz[linha][coluna] = 'a';
 			break;
+		case 'V':
+			this.matriz[linha][coluna] = 'V';
+			break;
 		}
 		return this.matriz;
 	}

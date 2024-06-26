@@ -114,23 +114,23 @@ class Jogo {
 		return;
 	}
 
-	char[][] salvaTabuleiroAtaque(char[][] tabuleiro, String nomeJogador, char tipoDeArma, int linha, int coluna) {
+	char[][] salvaTabuleiroAtaque(char[][] tabuleiro, String nomeJogador, char tipoDeArma, int linha, int coluna, int orientacao) {
 		char[][] novoTabuleiro = null;
 		switch (tipoDeArma) {
 		case 'C':
-			novoTabuleiro = this.accessModel.couracadoNoTabuleiro(tabuleiro, linha, coluna);
+			novoTabuleiro = this.accessModel.couracadoNoTabuleiro(tabuleiro, linha, coluna, orientacao, nomeJogador);
 			break;
 		case 'c':
-			novoTabuleiro = this.accessModel.cruzadorNoTabuleiro(tabuleiro, linha, coluna);
+			novoTabuleiro = this.accessModel.cruzadorNoTabuleiro(tabuleiro, linha, coluna, orientacao, nomeJogador);
 			break;
 		case 'd':
-			novoTabuleiro = this.accessModel.destroyerNoTabuleiro(tabuleiro, linha, coluna);
+			novoTabuleiro = this.accessModel.destroyerNoTabuleiro(tabuleiro, linha, coluna, orientacao, nomeJogador);
 			break;
 		case 'h':
-			novoTabuleiro = this.accessModel.hidroaviaoNoTabuleiro(tabuleiro, linha, coluna);
+			novoTabuleiro = this.accessModel.hidroaviaoNoTabuleiro(tabuleiro, linha, coluna, orientacao, nomeJogador);
 			break;
 		case 's':
-			novoTabuleiro = this.accessModel.submarinoNoTabuleiro(tabuleiro, linha, coluna);
+			novoTabuleiro = this.accessModel.submarinoNoTabuleiro(tabuleiro, linha, coluna, nomeJogador);
 			break;
 		}
 		accessModel.salvaTabuleiroAtaque(novoTabuleiro, nomeJogador);

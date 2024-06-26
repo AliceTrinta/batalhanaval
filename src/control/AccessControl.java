@@ -39,8 +39,8 @@ public class AccessControl {
 		return;
 	}
 
-	public char[][] salvarMudancasNoTabuleiro(char[][] tabuleiro, String nomeJogador, char tipoArma, int linha, int coluna) {
-		return jogo.salvaTabuleiroAtaque(tabuleiro, nomeJogador, tipoArma, linha, coluna);
+	public char[][] salvarMudancasNoTabuleiro(char[][] tabuleiro, String nomeJogador, char tipoArma, int linha, int coluna, int orientacao) {
+		return jogo.salvaTabuleiroAtaque(tabuleiro, nomeJogador, tipoArma, linha, coluna, orientacao);
 	}
 	
 	public char[][] salvaTabuleiroDefesa(char[][] tabuleiro, String nomeJogador){

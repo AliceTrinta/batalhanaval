@@ -48,7 +48,11 @@ class Jogo {
 					jogadores = control.carregaPartida(file);
 					if (jogadores.size() == 3) {
 						nomeJogador1 = jogadores.get(2);
-						nomeJogador2 = jogadores.get(0);
+						if (nomeJogador1.equals(jogadores.get(0))) {
+							nomeJogador2 = jogadores.get(1);
+						} else {
+							nomeJogador2 = jogadores.get(0);
+						}
 					} else {
 						nomeJogador1 = jogadores.get(0);
 						nomeJogador2 = jogadores.get(1);

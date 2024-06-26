@@ -1,9 +1,13 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class Cruzador {
 	int linhaInicial;
 	int colunaInicial;
 	Boolean afundou;
+	List<QuadradoDeTabuleiro> coordenadas = new ArrayList<>();
 
 	Cruzador(int linhaInicial, int colunaInicial) {
 		this.linhaInicial = linhaInicial;

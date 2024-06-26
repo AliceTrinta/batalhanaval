@@ -65,4 +65,21 @@ class DadosDeJogo extends TopicosConfiguraTabuleiro{
 	void setTabuleiroDefesa2(char[][] tabuleiro) {
 		this.jogador2.tabuleiroDefesa = tabuleiro;
 	}
+	
+	void setTabuleiroPrincipal(Tabuleiro tabuleiro, String nomeJogador) {
+		if (this.jogador1.getNome().equals(nomeJogador)) {
+			this.jogador1.tabuleiroPrincipal = tabuleiro;
+		} else if (this.jogador2.getNome().equals(nomeJogador)) {
+			this.jogador2.tabuleiroPrincipal = tabuleiro;
+		}
+	}
+	
+	Tabuleiro getTabuleiroPrincipal(String nomeJogador) {
+		if (this.jogador1.getNome().equals(nomeJogador)) {
+			return this.jogador1.tabuleiroPrincipal;
+		} else if (this.jogador2.getNome().equals(nomeJogador)) {
+			return this.jogador2.tabuleiroPrincipal;
+		}
+		return null;
+	}
 }

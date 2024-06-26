@@ -235,25 +235,25 @@ class ConfiguraTabuleiro extends JFrame implements KeyListener, ObservadorConfig
 					if (quadrado != null && this.armaSelecionada != null) {
 						if (this.armaSelecionada == "Couracado" && this.quantidadeCouracado > 0) {
 							this.tabuleiro.matriz = control.salvarMudancasNoTabuleiro(this.tabuleiro.matriz,
-									this.nomeJogador, 'C', (int) quadrado.linhaInicial, (int) quadrado.colunaInicial);
+									this.nomeJogador, 'C', (int) quadrado.linhaInicial, (int) quadrado.colunaInicial, 0);
 						} else if (this.armaSelecionada == "c1"
 								|| this.armaSelecionada == "c2" && this.quantidadeCruzador > 0) {
 							this.tabuleiro.matriz = control.salvarMudancasNoTabuleiro(this.tabuleiro.matriz,
-									this.nomeJogador, 'c', (int) quadrado.linhaInicial, (int) quadrado.colunaInicial);
+									this.nomeJogador, 'c', (int) quadrado.linhaInicial, (int) quadrado.colunaInicial, 0);
 						} else if (this.armaSelecionada == "d1" || this.armaSelecionada == "d2"
 								|| this.armaSelecionada == "d3" && this.quantidadeDestroyer > 0) {
 							this.tabuleiro.matriz = control.salvarMudancasNoTabuleiro(this.tabuleiro.matriz,
-									this.nomeJogador, 'd', (int) quadrado.linhaInicial, (int) quadrado.colunaInicial);
+									this.nomeJogador, 'd', (int) quadrado.linhaInicial, (int) quadrado.colunaInicial, 0);
 						} else if (this.armaSelecionada == "h1" || this.armaSelecionada == "h2"
 								|| this.armaSelecionada == "h3" || this.armaSelecionada == "h4"
 								|| this.armaSelecionada == "h5" && this.quantidadeHidroaviao > 0) {
 							this.tabuleiro.matriz = control.salvarMudancasNoTabuleiro(this.tabuleiro.matriz,
-									this.nomeJogador, 'h', (int) quadrado.linhaInicial, (int) quadrado.colunaInicial);
+									this.nomeJogador, 'h', (int) quadrado.linhaInicial, (int) quadrado.colunaInicial, 0);
 						} else if (this.armaSelecionada == "s1" || this.armaSelecionada == "s2"
 								|| this.armaSelecionada == "s3" || this.armaSelecionada == "s4"
 								|| this.armaSelecionada == "s5" && this.quantidadeSubmarino > 0) {
 							this.tabuleiro.matriz = control.salvarMudancasNoTabuleiro(this.tabuleiro.matriz,
-									this.nomeJogador, 's', (int) quadrado.linhaInicial, (int) quadrado.colunaInicial);
+									this.nomeJogador, 's', (int) quadrado.linhaInicial, (int) quadrado.colunaInicial, 0);
 						}
 						this.armaSelecionada = null;
 						return;

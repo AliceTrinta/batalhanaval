@@ -1,8 +1,12 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class Couracado {
 	int linhaInicial;
 	int colunaInicial;
+	List<QuadradoDeTabuleiro> coordenadas = new ArrayList<>();
 	Boolean afundou;
 
 	Couracado(int linhaInicial, int colunaInicial) {

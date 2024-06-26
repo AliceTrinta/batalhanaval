@@ -19,25 +19,12 @@ class Ataque {
 		
 		char[][] tabuleiroAtacado = this.accessModel.pegaTabuleiroAtaque(nomeAtacado);
 		char tipoDeArma = tabuleiroAtacado[linha][coluna];
-		switch (tipoDeArma) {
-		case 'C':
-			this.accessModel.pintarQuadrado(linha, coluna, "ROSA");
-			break;
-		case 'c':
-			this.accessModel.pintarQuadrado(linha, coluna, "ROSA");
-			break;
-		case 'd':
-			this.accessModel.pintarQuadrado(linha, coluna, "ROSA");
-			break;
-		case 'h':
-			this.accessModel.pintarQuadrado(linha, coluna, "ROSA");
-			break;
-		case 's':
-			this.accessModel.pintarQuadrado(linha, coluna, "ROSA");
-			break;
-		case '0':
+		if(tipoDeArma == '0') {
 			this.accessModel.pintarQuadrado(linha, coluna, "AZUL");
-			break;
+		}
+		boolean afundou = this.accessModel.verificaSeAfundou(linha, coluna, tipoDeArma, nomeAtacado);
+		if(!afundou) {
+			this.accessModel.pintarQuadrado(linha, coluna, "ROSA");
 		}
 	}
 

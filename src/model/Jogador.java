@@ -4,7 +4,7 @@ class Jogador {
 	String nome;
 	char[][] tabuleiroAtaque;
 	char[][] tabuleiroDefesa;
-	Tabuleiro tabuleiroPrincipal;
+	Tabuleiro tabuleiroPrincipal = new Tabuleiro();
 
 	Jogador() {
 	}
@@ -23,7 +23,6 @@ class Jogador {
 
 	void setTabuleiroAtaque(char[][] tabuleiro) {
 		this.tabuleiroAtaque = tabuleiro;
-		this.tabuleiroPrincipal = new Tabuleiro(tabuleiroAtaque);
 	}
 	
 	char[][] getTabuleiroDefesa() {
@@ -32,5 +31,9 @@ class Jogador {
 
 	void setTabuleiroDefesa(char[][] tabuleiro) {
 		this.tabuleiroDefesa = tabuleiro;
+	}
+	
+	void setTabuleiroPrincipal(char[][] tabuleiroAtaque, char[][] tabuleiroDefesa) {
+		this.tabuleiroPrincipal.inicializaDePartidaAnterior(tabuleiroAtaque, tabuleiroDefesa);
 	}
 }

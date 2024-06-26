@@ -4,6 +4,7 @@ class Submarino {
 	int linhaInicial;
 	int colunaInicial;
 	Boolean afundou;
+	QuadradoDeTabuleiro coordenadas = new QuadradoDeTabuleiro(0,0);
 
 	Submarino(int linhaInicial, int colunaInicial) {
 		this.linhaInicial = linhaInicial;

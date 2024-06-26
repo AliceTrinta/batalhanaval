@@ -20,6 +20,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -38,6 +39,7 @@ class PainelDeJogo extends JPanel implements MouseListener, ObservadorConfiguraT
 	JButton botao;
 	Boolean acao;
 	Boolean atual;
+	int ataques;
 
 	PainelDeJogo(char[][] tabuleiroAtaque, char[][] tabuleiroDefesa, String nomeJogador) {
 		setSize(1600, 1000);
@@ -48,6 +50,7 @@ class PainelDeJogo extends JPanel implements MouseListener, ObservadorConfiguraT
 		this.tabuleiroAtaque = new Tabuleiro(tabuleiroAtaque);
 		this.tabuleiroDefesa = new Tabuleiro(tabuleiroDefesa);
 		this.botao = new JButton("Terminar turno");
+		this.ataques = 0;
 
 		JPanel painelEsquerda = new JPanel(new BorderLayout());
 		painelEsquerda.add(this.tabuleiroAtaque, BorderLayout.CENTER);
@@ -87,6 +90,11 @@ class PainelDeJogo extends JPanel implements MouseListener, ObservadorConfiguraT
 	}
 
 	void fireNavigationEvent() {
+		if(this.ataques < 3) {
+			JOptionPane.showMessageDialog(this, "Por favor, termine de realizar suas jogadas!");
+			return;
+		}
+		this.ataques = 0;
 		NavigationEvent event = new NavigationEvent(null, null, 0); // Panel number not needed for switch
 		for (NavigationListener listener : listeners) {
 			listener.navigate(event);
@@ -137,6 +145,7 @@ class PainelDeJogo extends JPanel implements MouseListener, ObservadorConfiguraT
 			QuadradoDeTabuleiro quadrado = this.tabuleiroDefesa.confirmaObjeto(convertedPoint);
 			if (quadrado != null) {
 				control.realizaAtaque((int) quadrado.linhaInicial, (int) quadrado.colunaInicial, this.nomeJogador);
+				this.ataques = this.ataques + 1;
 				return;
 			}
 		}

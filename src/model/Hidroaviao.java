@@ -1,9 +1,13 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class Hidroaviao {
 	int linhaInicial;
 	int colunaInicial;
 	Boolean afundou;
+	List<QuadradoDeTabuleiro> coordenadas = new ArrayList<>();
 
 	Hidroaviao(int linhaInicial, int colunaInicial) {
 		this.linhaInicial = linhaInicial;
