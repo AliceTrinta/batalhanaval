@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
@@ -19,9 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import control.AccessControl;
@@ -37,6 +40,7 @@ class PainelDeJogo extends JPanel implements MouseListener, ObservadorConfiguraT
 	Component componenteAtual;
 	List<NavigationListener> listeners = new ArrayList<>();
 	JButton botao;
+	JButton botaoReiniciar;
 	Boolean acao;
 	Boolean atual;
 	int ataques;
@@ -50,6 +54,7 @@ class PainelDeJogo extends JPanel implements MouseListener, ObservadorConfiguraT
 		this.tabuleiroAtaque = new Tabuleiro(tabuleiroAtaque);
 		this.tabuleiroDefesa = new Tabuleiro(tabuleiroDefesa);
 		this.botao = new JButton("Terminar turno");
+		this.botaoReiniciar = new JButton("Jogar novamente");
 		this.ataques = 0;
 
 		JPanel painelEsquerda = new JPanel(new BorderLayout());
@@ -201,34 +206,97 @@ class PainelDeJogo extends JPanel implements MouseListener, ObservadorConfiguraT
 		}
 		this.tabuleiroDefesa.matriz = control.tabuleiroDefesa(nomeJogador);
 	}
-
+	
 	@Override
-	public void couracadoNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
-		// TODO Auto-generated method stub
+	public void anunciaVencedor() {
+		JDialog dialog = new JDialog();
 
+		JPanel panel = new JPanel(new BorderLayout());
+        panel.setPreferredSize(new Dimension(500, 250));
+        
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        
+        
+        JLabel messageLabel = new JLabel("Fim de jogo! " + nomeJogador + " ganhou. Deseja jogar novamente?");
+ 
+        messageLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        panel.add(messageLabel, BorderLayout.CENTER);
+
+        JButton button2 = new JButton("Sair");
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        buttonPanel.add(botaoReiniciar);
+        buttonPanel.add(button2);
+
+        panel.add(buttonPanel, BorderLayout.SOUTH);
+
+        dialog.getContentPane().add(panel);
+        dialog.pack();
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
 	}
 
 	@Override
-	public void cruzadorNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
+	public void couracadoNoTabuleiro(int linhaInicial, int colunaInicial, int orientacao, Boolean posicaoCorreta) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void destroyerNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
+	public void cruzadorNoTabuleiro(int linhaInicial, int colunaInicial, int orientacao, Boolean posicaoCorreta) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void hidroaviaoNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
+	public void destroyerNoTabuleiro(int linhaInicial, int colunaInicial, int orientacao, Boolean posicaoCorreta) {
 		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void hidroaviaoNoTabuleiro(int linhaInicial, int colunaInicial, int orientacao, Boolean posicaoCorreta) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void submarinoNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
 		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void removeCouracadoDoTabuleiro(int linhaInicial, int colunaInicial, int orientacao) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeCruzadorDoTabuleiro(int linhaInicial, int colunaInicial, int orientacao) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeDestroyerDoTabuleiro(int linhaInicial, int colunaInicial, int orientacao) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeHidroaviaoDoTabuleiro(int linhaInicial, int colunaInicial, int orientacao) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeSubmarinoDoTabuleiro(int linhaInicial, int colunaInicial) {
+		// TODO Auto-generated method stub
+		
 	}
 }

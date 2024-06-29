@@ -21,58 +21,28 @@ public class TopicosConfiguraTabuleiro {
 	public void removeObservador(ObservadorConfiguraTabuleiro observador) {
 		observadores.remove(observador);
 	}
-
-//	public void deselecionarCouracado() {
-//		for (ObservadorConfiguraTabuleiro observador : observadores) {
-//			observador.deselecionarCouracado();
-//		}
-//	}
-//	
-//	public void deselecionarCruzador() {
-//		for (ObservadorConfiguraTabuleiro observador : observadores) {
-//			observador.deselecionarCruzador();
-//		}
-//	}
-//	
-//	public void deselecionarDestroyer() {
-//		for (ObservadorConfiguraTabuleiro observador : observadores) {
-//			observador.deselecionarDestroyer();
-//		}
-//	}
-//	
-//	public void deselecionarHidroaviao() {
-//		for (ObservadorConfiguraTabuleiro observador : observadores) {
-//			observador.deselecionarHidroaviao();
-//		}
-//	}
-//	
-//	public void deselecionarSubmarino() {
-//		for (ObservadorConfiguraTabuleiro observador : observadores) {
-//			observador.deselecionarSubmarino();
-//		}
-//	}
 	
-	public void couracadoNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
+	public void couracadoNoTabuleiro(int linhaInicial, int colunaInicial, int orientacao, Boolean posicaoCorreta) {
 		for (ObservadorConfiguraTabuleiro observador : observadores) {
-			observador.couracadoNoTabuleiro(linhaInicial, colunaInicial, posicaoCorreta);
+			observador.couracadoNoTabuleiro(linhaInicial, colunaInicial, orientacao, posicaoCorreta);
 		}
 	}
 	
-	public void cruzadorNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
+	public void cruzadorNoTabuleiro(int linhaInicial, int colunaInicial, int orientacao, Boolean posicaoCorreta) {
 		for (ObservadorConfiguraTabuleiro observador : observadores) {
-			observador.cruzadorNoTabuleiro(linhaInicial, colunaInicial, posicaoCorreta);
+			observador.cruzadorNoTabuleiro(linhaInicial, colunaInicial, orientacao, posicaoCorreta);
 		}
 	}
 	
-	public void destroyerNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
+	public void destroyerNoTabuleiro(int linhaInicial, int colunaInicial, int orientacao, Boolean posicaoCorreta) {
 		for (ObservadorConfiguraTabuleiro observador : observadores) {
-			observador.destroyerNoTabuleiro(linhaInicial, colunaInicial, posicaoCorreta);
+			observador.destroyerNoTabuleiro(linhaInicial, colunaInicial, orientacao, posicaoCorreta);
 		}
 	}
 	
-	public void hidroaviaoNoTabuleiro(int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
+	public void hidroaviaoNoTabuleiro(int linhaInicial, int colunaInicial, int orientacao, Boolean posicaoCorreta) {
 		for (ObservadorConfiguraTabuleiro observador : observadores) {
-			observador.hidroaviaoNoTabuleiro(linhaInicial, colunaInicial, posicaoCorreta);
+			observador.hidroaviaoNoTabuleiro(linhaInicial, colunaInicial, orientacao, posicaoCorreta);
 		}
 	}
 	
@@ -85,6 +55,42 @@ public class TopicosConfiguraTabuleiro {
 	public void pintarQuadrado(int linha, int coluna, String cor) {
 		for (ObservadorConfiguraTabuleiro observador : observadores) {
 			observador.pintarQuadrado(linha, coluna, cor);
+		}
+	}
+	
+	public void anunciaVencedor() {
+		for (ObservadorConfiguraTabuleiro observador : observadores) {
+			observador.anunciaVencedor();
+		}
+	}
+	
+	public void removeCouracadoDoTabuleiro(int linhaInicial, int colunaInicial, int orientacao) {
+		for (ObservadorConfiguraTabuleiro observador : observadores) {
+			observador.removeCouracadoDoTabuleiro(linhaInicial, colunaInicial, orientacao);
+		}
+	}
+	
+	public void removeCruzadorDoTabuleiro(int linhaInicial, int colunaInicial, int orientacao) {
+		for (ObservadorConfiguraTabuleiro observador : observadores) {
+			observador.removeCruzadorDoTabuleiro(linhaInicial, colunaInicial, orientacao);
+		}
+	}
+	
+	public void removeDestroyerDoTabuleiro(int linhaInicial, int colunaInicial, int orientacao) {
+		for (ObservadorConfiguraTabuleiro observador : observadores) {
+			observador.removeDestroyerDoTabuleiro(linhaInicial, colunaInicial, orientacao);
+		}
+	}
+	
+	public void removeHidroaviaoDoTabuleiro(int linhaInicial, int colunaInicial, int orientacao) {
+		for (ObservadorConfiguraTabuleiro observador : observadores) {
+			observador.removeHidroaviaoDoTabuleiro(linhaInicial, colunaInicial, orientacao);
+		}
+	}
+	
+	public void removeSubmarinoDoTabuleiro(int linhaInicial, int colunaInicial) {
+		for (ObservadorConfiguraTabuleiro observador : observadores) {
+			observador.removeSubmarinoDoTabuleiro(linhaInicial, colunaInicial);
 		}
 	}
 }

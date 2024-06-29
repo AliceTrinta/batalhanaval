@@ -64,7 +64,7 @@ class Tabuleiro {
 					}
 				    else if (tabuleiroAtaque[i + 1][j - 1] == 'h' && tabuleiroAtaque[i - 1][j - 1] == 'h') {
 						adicionarHidroaviao(i, j, 90);
-					} else if (tabuleiroAtaque[i + 1][j + 1] == 'h' && tabuleiroAtaque[i + 1][j - 1] == 'h') {
+					} else if (tabuleiroAtaque[i - 1][j - 1] == 'h' && tabuleiroAtaque[i - 1][j + 1] == 'h') {
 						adicionarHidroaviao(i, j, 180);
 					} else if (tabuleiroAtaque[i - 1][j + 1] == 'h' && tabuleiroAtaque[i + 1][j + 1] == 'h') {
 						adicionarHidroaviao(i, j, 270);
@@ -188,8 +188,8 @@ class Tabuleiro {
 			h.coordenadas.add(new QuadradoDeTabuleiro(i + 1, j - 1));
 		} else if (orientacao == 180) {
 			h.coordenadas.add(new QuadradoDeTabuleiro(i, j));
-			h.coordenadas.add(new QuadradoDeTabuleiro(i + 1, j + 1));
-			h.coordenadas.add(new QuadradoDeTabuleiro(i + 1, j - 1));
+			h.coordenadas.add(new QuadradoDeTabuleiro(i - 1, j - 1));
+			h.coordenadas.add(new QuadradoDeTabuleiro(i - 1, j + 1));
 		} else if (orientacao == 270) {
 			h.coordenadas.add(new QuadradoDeTabuleiro(i, j));
 			h.coordenadas.add(new QuadradoDeTabuleiro(i - 1, j + 1));

@@ -14,21 +14,21 @@ class Cruzador extends JPanel {
 	double ladoQuadrado;
 	QuadradoDeTabuleiro[][] c1;
 	QuadradoDeTabuleiro[][] c2;
-	
-	Cruzador(){
+
+	Cruzador() {
 		inicializarCruzadores();
 		this.ladoQuadrado = c1[0][0].lado;
 	}
-	
+
 	void inicializarCruzadores() {
 		this.c1 = new QuadradoDeTabuleiro[1][this.tamanho];
-		this.c2 =  new QuadradoDeTabuleiro[1][this.tamanho];
+		this.c2 = new QuadradoDeTabuleiro[1][this.tamanho];
 		for (int j = 0; j < tamanho; j++) {
 			this.c1[0][j] = new QuadradoDeTabuleiro(0, 0, 0, 0);
 			this.c2[0][j] = new QuadradoDeTabuleiro(0, 0, 0, 0);
 		}
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -44,36 +44,35 @@ class Cruzador extends JPanel {
 			g2d.draw(this.c1[0][coluna].quadrado);
 			g2d.fill(this.c1[0][coluna].quadrado);
 		}
-		
+
 		for (int coluna = 0; coluna < tamanho; coluna++) {
-			double x = ladoQuadrado*5+50 + coluna * ladoQuadrado;
+			double x = ladoQuadrado * 5 + 50 + coluna * ladoQuadrado;
 			this.c2[0][coluna] = new QuadradoDeTabuleiro(0, coluna, x, 100);
 			g2d.draw(this.c2[0][coluna].quadrado);
 			g2d.fill(this.c2[0][coluna].quadrado);
 		}
 	}
-	
-	Integer confirmaObjeto(Point point){
+
+	Integer confirmaObjeto(Point point) {
 		for (int coluna = 0; coluna < tamanho; coluna++) {
-			if(this.c1[0][coluna].quadrado.contains(point)){
+			if (this.c1[0][coluna].quadrado.contains(point)) {
 				return 1;
 			}
-			if(this.c2[0][coluna].quadrado.contains(point)){
+			if (this.c2[0][coluna].quadrado.contains(point)) {
 				return 2;
 			}
 		}
 		return null;
 	}
-	
+
 	void selecionaNavio(Graphics g, int navio) {
 		Graphics2D g2d = (Graphics2D) g;
-		if(navio == 1) {
+		if (navio == 1) {
 			for (int coluna = 0; coluna < this.tamanho; coluna++) {
 				g2d.setColor(Color.BLACK);
 				g2d.draw(this.c1[0][coluna].quadrado);
 			}
-		}
-		else if(navio == 2) {
+		} else if (navio == 2) {
 			for (int coluna = 0; coluna < this.tamanho; coluna++) {
 				g2d.setColor(Color.BLACK);
 				g2d.draw(this.c2[0][coluna].quadrado);
@@ -81,16 +80,16 @@ class Cruzador extends JPanel {
 		}
 		return;
 	}
-	
+
 	void deselecionaNavio(Graphics g, String navio) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(Color.pink);
-		if(navio == "c1") {
+		if (navio == "c1") {
 			for (int coluna = 0; coluna < this.tamanho; coluna++) {
 				g2d.draw(this.c1[0][coluna].quadrado);
 				g2d.fill(this.c1[0][coluna].quadrado);
 			}
-		} else if(navio == "c2") {
+		} else if (navio == "c2") {
 			for (int coluna = 0; coluna < this.tamanho; coluna++) {
 				g2d.draw(this.c2[0][coluna].quadrado);
 				g2d.fill(this.c2[0][coluna].quadrado);
@@ -98,16 +97,16 @@ class Cruzador extends JPanel {
 		}
 		return;
 	}
-	
+
 	void removeNavio(Graphics g, String navio) {
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(Color.WHITE);
-		if(navio == "c1") {
+		if (navio == "c1") {
 			for (int coluna = 0; coluna < this.tamanho; coluna++) {
 				g2d.draw(this.c1[0][coluna].quadrado);
 				g2d.fill(this.c1[0][coluna].quadrado);
 			}
-		} else if(navio == "c2") {
+		} else if (navio == "c2") {
 			for (int coluna = 0; coluna < this.tamanho; coluna++) {
 				g2d.draw(this.c2[0][coluna].quadrado);
 				g2d.fill(this.c2[0][coluna].quadrado);

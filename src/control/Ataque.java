@@ -25,6 +25,14 @@ class Ataque {
 		boolean afundou = this.accessModel.verificaSeAfundou(linha, coluna, tipoDeArma, nomeAtacado);
 		if(!afundou) {
 			this.accessModel.pintarQuadrado(linha, coluna, "ROSA");
+			return;
+		} else {
+			boolean vencedor = this.accessModel.verificaSeTodosAfundaram(nomeAtacado);
+			if(vencedor) {
+				this.accessModel.anunciaVencedor();
+			} else {
+				return;
+			}
 		}
 	}
 

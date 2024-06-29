@@ -47,13 +47,13 @@ class Submarino extends JPanel {
 		g2d.draw(this.s2.quadrado);
 		g2d.fill(this.s2.quadrado);
 		
-		this.s2 = new QuadradoDeTabuleiro(0, 0, this.ladoQuadrado * 4 + 50, 100);
-		g2d.draw(this.s2.quadrado);
-		g2d.fill(this.s2.quadrado);
+		this.s3 = new QuadradoDeTabuleiro(0, 0, this.ladoQuadrado * 4 + 50, 100);
+		g2d.draw(this.s3.quadrado);
+		g2d.fill(this.s3.quadrado);
 		
-		this.s2 = new QuadradoDeTabuleiro(0, 0, this.ladoQuadrado * 6 + 50, 100);
-		g2d.draw(this.s2.quadrado);
-		g2d.fill(this.s2.quadrado);
+		this.s4 = new QuadradoDeTabuleiro(0, 0, this.ladoQuadrado * 6 + 50, 100);
+		g2d.draw(this.s4.quadrado);
+		g2d.fill(this.s4.quadrado);
 	}
 	
 	Integer confirmaObjeto(Point point){

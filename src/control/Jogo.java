@@ -137,6 +137,29 @@ class Jogo {
 		return novoTabuleiro;
 	}
 	
+	char[][] removeArmaDoTabuleiroDeAtaque(char[][] tabuleiro, String nomeJogador, char tipoDeArma, int linha, int coluna, int orientacao) {
+		char[][] novoTabuleiro = null;
+		switch (tipoDeArma) {
+		case 'C':
+			novoTabuleiro = this.accessModel.removeCouracadoDoTabuleiro(tabuleiro, linha, coluna, orientacao, nomeJogador);
+			break;
+		case 'c':
+			novoTabuleiro = this.accessModel.removeCruzadorDoTabuleiro(tabuleiro, linha, coluna, orientacao, nomeJogador);
+			break;
+		case 'd':
+			novoTabuleiro = this.accessModel.removeDestroyerDoTabuleiro(tabuleiro, linha, coluna, orientacao, nomeJogador);
+			break;
+		case 'h':
+			novoTabuleiro = this.accessModel.removeHidroaviaoDoTabuleiro(tabuleiro, linha, coluna, orientacao, nomeJogador);
+			break;
+		case 's':
+			novoTabuleiro = this.accessModel.removeSubmarinoDoTabuleiro(tabuleiro, linha, coluna, nomeJogador);
+			break;
+		}
+		accessModel.salvaTabuleiroAtaque(novoTabuleiro, nomeJogador);
+		return novoTabuleiro;
+	}
+	
 	char[][] salvaTabuleiroDefesa(char[][] tabuleiro, String nomeJogador) {
 		return accessModel.salvaTabuleiroDefesa(tabuleiro, nomeJogador);
 	}
@@ -158,5 +181,35 @@ class Jogo {
 
 	char[][] pegaTabuleiroDefesa(String nomeJogador) {
 		return accessModel.pegaTabuleiroDefesa(nomeJogador);
+	}
+	
+	ArrayList<Integer> pegaCoordenadaDeNavio(int linha, int coluna, String nomeJogador, char tipoDeArma) {
+		switch (tipoDeArma) {
+		case 'C':
+			return this.accessModel.pegaLinhaInicialDoCouracado(nomeJogador);
+		case 'c':
+			return this.accessModel.pegaLinhaInicialDoCruzador(linha, coluna, nomeJogador);
+		case 'd':
+			return this.accessModel.pegaLinhaInicialDoDestroyer(linha, coluna, nomeJogador);
+		case 'h':
+			return this.accessModel.pegaLinhaInicialDoHidroaviao(linha, coluna, nomeJogador);
+		case 's':
+			return this.accessModel.pegaLinhaInicialDoSubmarino(linha, coluna, nomeJogador);
+		}
+		return null;
+	}
+	
+	Integer pegaOrientacao(int linha, int coluna, String nomeJogador, char tipoDeArma, char[][] matriz) {
+		switch (tipoDeArma) {
+		case 'C':
+			return this.accessModel.pegaOrientacaoDoCouracado(nomeJogador);
+		case 'c':
+			return this.accessModel.pegaOrientacaoDoCruzador(linha, coluna, nomeJogador);
+		case 'd':
+			return this.accessModel.pegaOrientacaoDoDestroyer(linha, coluna, nomeJogador);
+		case 'h':
+			return this.accessModel.pegaOrientacaoDoHidroaviao(linha, coluna, matriz);	
+		}
+		return null;
 	}
 }

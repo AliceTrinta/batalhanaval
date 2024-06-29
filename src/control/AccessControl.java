@@ -1,6 +1,7 @@
 package control;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import model.ObservadorConfiguraTabuleiro;
@@ -43,6 +44,10 @@ public class AccessControl {
 		return jogo.salvaTabuleiroAtaque(tabuleiro, nomeJogador, tipoArma, linha, coluna, orientacao);
 	}
 	
+	public char[][] removeArmaDoTabuleiro(char[][] tabuleiro, String nomeJogador, char tipoArma, int linha, int coluna, int orientacao) {
+		return jogo.removeArmaDoTabuleiroDeAtaque(tabuleiro, nomeJogador, tipoArma, linha, coluna, orientacao);
+	}
+	
 	public char[][] salvaTabuleiroDefesa(char[][] tabuleiro, String nomeJogador){
 		return jogo.salvaTabuleiroDefesa(tabuleiro, nomeJogador);
 	}
@@ -62,5 +67,13 @@ public class AccessControl {
 	
 	public void realizaAtaque(int linha, int coluna, String nomeAtacante) {
 		ataque.realizaAtaque(linha, coluna, nomeAtacante);
+	}
+	
+	public ArrayList<Integer> pegarCoordenadaDeNavio(int linha, int coluna, String nomeJogador, char tipoDeArma){
+		return jogo.pegaCoordenadaDeNavio(linha, coluna, nomeJogador, tipoDeArma);
+	}
+	
+	public Integer pegaOrientacao(int linha, int coluna, String nomeJogador, char tipoDeArma, char[][] matriz){
+		return jogo.pegaOrientacao(linha, coluna, nomeJogador, tipoDeArma, matriz);
 	}
 }

@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Component;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -11,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.SwingUtilities;
 
 import control.AccessControl;
 
@@ -151,6 +154,17 @@ class Jogo {
 		menu.add(itemSalvarSair);
 		menuBar.add(menu);
 		frame.setJMenuBar(menuBar);
+		
+		painelJogador1.botaoReiniciar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	Component source = (Component) e.getSource();
+                Window window = SwingUtilities.getWindowAncestor(source);
+                window.dispose();
+            	frame.dispose();
+            	new Jogo().telaInicial();
+            }
+        });
 
 		painelJogador1.addNavigationListener(event -> {
 			frame.remove(painelJogador1);

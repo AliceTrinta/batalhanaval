@@ -142,7 +142,7 @@ class Tabuleiro extends JPanel {
 		return null;
 	}
 
-	void couracadoNoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
+	void couracadoNoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, int orientacao, Boolean posicaoCorreta) {
 		int tamanho = 5;
 		Graphics2D g2d = (Graphics2D) g;
 		if (posicaoCorreta) {
@@ -151,13 +151,39 @@ class Tabuleiro extends JPanel {
 			g2d.setColor(Color.RED);
 		}
 		for (int i = 0; i < tamanho; i++) {
-			g2d.fill(this.tabuleiro[linhaInicial][i + colunaInicial].quadrado);
-			this.tabuleiro[linhaInicial][i + colunaInicial].cor = "CINZA";
+			if (orientacao == 90) {
+				g2d.fill(this.tabuleiro[i + linhaInicial][colunaInicial].quadrado);
+				this.tabuleiro[i + linhaInicial][colunaInicial].cor = "CINZA";
+			} else {
+				g2d.fill(this.tabuleiro[linhaInicial][i + colunaInicial].quadrado);
+				this.tabuleiro[linhaInicial][i + colunaInicial].cor = "CINZA";
+			}
 		}
 		return;
 	}
 
-	void cruzadorNoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
+	void removeCouracadoDoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, int orientacao) {
+		int tamanho = 5;
+		Graphics2D g2d = (Graphics2D) g;
+		for (int i = 0; i < tamanho; i++) {
+			if (orientacao == 90) {
+				g2d.setColor(g2d.getBackground());
+				g2d.fill(this.tabuleiro[i + linhaInicial][colunaInicial].quadrado);
+				g2d.setColor(Color.BLACK);
+				g2d.draw(this.tabuleiro[i + linhaInicial][colunaInicial].quadrado);
+				this.tabuleiro[i + linhaInicial][colunaInicial].cor = "BRANCO";
+			} else {
+				g2d.setColor(g2d.getBackground());
+				g2d.fill(this.tabuleiro[linhaInicial][colunaInicial + i].quadrado);
+				g2d.setColor(Color.BLACK);
+				g2d.draw(this.tabuleiro[linhaInicial][colunaInicial + i].quadrado);
+				this.tabuleiro[linhaInicial][i + colunaInicial].cor = "BRANCO";
+			}
+		}
+		return;
+	}
+
+	void cruzadorNoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, int orientacao, Boolean posicaoCorreta) {
 		int tamanho = 4;
 		Graphics2D g2d = (Graphics2D) g;
 		if (posicaoCorreta) {
@@ -166,13 +192,40 @@ class Tabuleiro extends JPanel {
 			g2d.setColor(Color.RED);
 		}
 		for (int i = 0; i < tamanho; i++) {
-			g2d.fill(this.tabuleiro[linhaInicial][i + colunaInicial].quadrado);
-			this.tabuleiro[linhaInicial][i + colunaInicial].cor = "ROSA";
+			if (orientacao == 90) {
+				g2d.fill(this.tabuleiro[i + linhaInicial][colunaInicial].quadrado);
+				this.tabuleiro[i + linhaInicial][colunaInicial].cor = "ROSA";
+			} else {
+				g2d.fill(this.tabuleiro[linhaInicial][i + colunaInicial].quadrado);
+				this.tabuleiro[linhaInicial][i + colunaInicial].cor = "ROSA";
+			}
 		}
 		return;
 	}
 
-	void destroyerNoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
+	void removeCruzadorDoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, int orientacao) {
+		int tamanho = 4;
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setColor(g2d.getBackground());
+		for (int i = 0; i < tamanho; i++) {
+			if (orientacao == 90) {
+				g2d.setColor(g2d.getBackground());
+				g2d.fill(this.tabuleiro[i + linhaInicial][colunaInicial].quadrado);
+				g2d.setColor(Color.BLACK);
+				g2d.draw(this.tabuleiro[i + linhaInicial][colunaInicial].quadrado);
+				this.tabuleiro[i + linhaInicial][colunaInicial].cor = "BRANCO";
+			} else {
+				g2d.setColor(g2d.getBackground());
+				g2d.fill(this.tabuleiro[linhaInicial][colunaInicial + i].quadrado);
+				g2d.setColor(Color.BLACK);
+				g2d.draw(this.tabuleiro[linhaInicial][colunaInicial + i].quadrado);
+				this.tabuleiro[linhaInicial][i + colunaInicial].cor = "BRANCO";
+			}
+		}
+		return;
+	}
+
+	void destroyerNoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, int orientacao, Boolean posicaoCorreta) {
 		int tamanho = 2;
 		Graphics2D g2d = (Graphics2D) g;
 		if (posicaoCorreta) {
@@ -181,8 +234,34 @@ class Tabuleiro extends JPanel {
 			g2d.setColor(Color.RED);
 		}
 		for (int i = 0; i < tamanho; i++) {
-			g2d.fill(this.tabuleiro[linhaInicial][i + colunaInicial].quadrado);
-			this.tabuleiro[linhaInicial][i + colunaInicial].cor = "VERDE";
+			if (orientacao == 90) {
+				g2d.fill(this.tabuleiro[i + linhaInicial][colunaInicial].quadrado);
+				this.tabuleiro[i + linhaInicial][colunaInicial].cor = "VERDE";
+			} else {
+				g2d.fill(this.tabuleiro[linhaInicial][i + colunaInicial].quadrado);
+				this.tabuleiro[linhaInicial][i + colunaInicial].cor = "VERDE";
+			}
+		}
+		return;
+	}
+
+	void removeDestroyerDoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, int orientacao) {
+		int tamanho = 2;
+		Graphics2D g2d = (Graphics2D) g;
+		for (int i = 0; i < tamanho; i++) {
+			if (orientacao == 90) {
+				g2d.setColor(g2d.getBackground());
+				g2d.fill(this.tabuleiro[i + linhaInicial][colunaInicial].quadrado);
+				g2d.setColor(Color.BLACK);
+				g2d.draw(this.tabuleiro[i + linhaInicial][colunaInicial].quadrado);
+				this.tabuleiro[i + linhaInicial][colunaInicial].cor = "BRANCO";
+			} else {
+				g2d.setColor(g2d.getBackground());
+				g2d.fill(this.tabuleiro[linhaInicial][colunaInicial + i].quadrado);
+				g2d.setColor(Color.BLACK);
+				g2d.draw(this.tabuleiro[linhaInicial][colunaInicial + i].quadrado);
+				this.tabuleiro[linhaInicial][i + colunaInicial].cor = "BRANCO";
+			}
 		}
 		return;
 	}
@@ -199,19 +278,112 @@ class Tabuleiro extends JPanel {
 		return;
 	}
 
-	void hidroaviaoNoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, Boolean posicaoCorreta) {
+	void removeSubmarinoDoTabuleiro(Graphics g, int linhaInicial, int colunaInicial) {
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setColor(g2d.getBackground());
+		g2d.fill(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+		g2d.setColor(Color.BLACK);
+		g2d.draw(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+		this.tabuleiro[linhaInicial][colunaInicial].cor = "BRANCO";
+		return;
+	}
+
+	void hidroaviaoNoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, int orientacao,
+			Boolean posicaoCorreta) {
 		Graphics2D g2d = (Graphics2D) g;
 		if (posicaoCorreta) {
 			g2d.setColor(Color.ORANGE);
 		} else {
 			g2d.setColor(Color.RED);
 		}
-		g2d.fill(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
-		g2d.fill(this.tabuleiro[linhaInicial + 1][colunaInicial - 1].quadrado);
-		g2d.fill(this.tabuleiro[linhaInicial + 1][colunaInicial + 1].quadrado);
-		this.tabuleiro[linhaInicial][colunaInicial].cor = "LARANJA";
-		this.tabuleiro[linhaInicial + 1][colunaInicial - 1].cor = "LARANJA";
-		this.tabuleiro[linhaInicial + 1][colunaInicial + 1].cor = "LARANJA";
+		if (orientacao == 90) {
+			g2d.fill(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+			g2d.fill(this.tabuleiro[linhaInicial - 1][colunaInicial - 1].quadrado);
+			g2d.fill(this.tabuleiro[linhaInicial + 1][colunaInicial - 1].quadrado);
+			this.tabuleiro[linhaInicial][colunaInicial].cor = "LARANJA";
+			this.tabuleiro[linhaInicial - 1][colunaInicial - 1].cor = "LARANJA";
+			this.tabuleiro[linhaInicial + 1][colunaInicial - 1].cor = "LARANJA";
+
+		} else if (orientacao == 180) {
+			g2d.fill(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+			g2d.fill(this.tabuleiro[linhaInicial - 1][colunaInicial - 1].quadrado);
+			g2d.fill(this.tabuleiro[linhaInicial - 1][colunaInicial + 1].quadrado);
+			this.tabuleiro[linhaInicial][colunaInicial].cor = "LARANJA";
+			this.tabuleiro[linhaInicial - 1][colunaInicial - 1].cor = "LARANJA";
+			this.tabuleiro[linhaInicial - 1][colunaInicial + 1].cor = "LARANJA";
+
+		} else if (orientacao == 270) {
+			g2d.fill(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+			g2d.fill(this.tabuleiro[linhaInicial - 1][colunaInicial + 1].quadrado);
+			g2d.fill(this.tabuleiro[linhaInicial + 1][colunaInicial + 1].quadrado);
+			this.tabuleiro[linhaInicial][colunaInicial].cor = "LARANJA";
+			this.tabuleiro[linhaInicial - 1][colunaInicial + 1].cor = "LARANJA";
+			this.tabuleiro[linhaInicial + 1][colunaInicial + 1].cor = "LARANJA";
+		} else {
+			g2d.fill(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+			g2d.fill(this.tabuleiro[linhaInicial + 1][colunaInicial - 1].quadrado);
+			g2d.fill(this.tabuleiro[linhaInicial + 1][colunaInicial + 1].quadrado);
+			this.tabuleiro[linhaInicial][colunaInicial].cor = "LARANJA";
+			this.tabuleiro[linhaInicial + 1][colunaInicial - 1].cor = "LARANJA";
+			this.tabuleiro[linhaInicial + 1][colunaInicial + 1].cor = "LARANJA";
+		}
+		return;
+	}
+
+	void removeHidroaviaoDoTabuleiro(Graphics g, int linhaInicial, int colunaInicial, int orientacao) {
+		Graphics2D g2d = (Graphics2D) g;
+		if (orientacao == 90) {
+			g2d.setColor(g2d.getBackground());
+			g2d.fill(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+			g2d.fill(this.tabuleiro[linhaInicial - 1][colunaInicial - 1].quadrado);
+			g2d.fill(this.tabuleiro[linhaInicial + 1][colunaInicial - 1].quadrado);
+			g2d.setColor(Color.BLACK);
+			g2d.draw(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+			g2d.draw(this.tabuleiro[linhaInicial - 1][colunaInicial - 1].quadrado);
+			g2d.draw(this.tabuleiro[linhaInicial + 1][colunaInicial - 1].quadrado);
+			this.tabuleiro[linhaInicial][colunaInicial].cor = "BRANCO";
+			this.tabuleiro[linhaInicial - 1][colunaInicial - 1].cor = "BRANCO";
+			this.tabuleiro[linhaInicial + 1][colunaInicial - 1].cor = "BRANCO";
+
+		} else if (orientacao == 180) {
+			g2d.setColor(g2d.getBackground());
+			g2d.fill(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+			g2d.fill(this.tabuleiro[linhaInicial - 1][colunaInicial - 1].quadrado);
+			g2d.fill(this.tabuleiro[linhaInicial - 1][colunaInicial + 1].quadrado);
+			g2d.setColor(Color.BLACK);
+			g2d.draw(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+			g2d.draw(this.tabuleiro[linhaInicial - 1][colunaInicial - 1].quadrado);
+			g2d.draw(this.tabuleiro[linhaInicial - 1][colunaInicial + 1].quadrado);
+			this.tabuleiro[linhaInicial][colunaInicial].cor = "BRANCO";
+			this.tabuleiro[linhaInicial - 1][colunaInicial - 1].cor = "BRANCO";
+			this.tabuleiro[linhaInicial - 1][colunaInicial + 1].cor = "BRANCO";
+
+		} else if (orientacao == 270) {
+			g2d.setColor(g2d.getBackground());
+			g2d.fill(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+			g2d.fill(this.tabuleiro[linhaInicial - 1][colunaInicial + 1].quadrado);
+			g2d.fill(this.tabuleiro[linhaInicial + 1][colunaInicial + 1].quadrado);
+			g2d.setColor(Color.BLACK);
+			g2d.draw(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+			g2d.draw(this.tabuleiro[linhaInicial - 1][colunaInicial + 1].quadrado);
+			g2d.draw(this.tabuleiro[linhaInicial + 1][colunaInicial + 1].quadrado);
+			this.tabuleiro[linhaInicial][colunaInicial].cor = "BRANCO";
+			this.tabuleiro[linhaInicial - 1][colunaInicial + 1].cor = "BRANCO";
+			this.tabuleiro[linhaInicial + 1][colunaInicial + 1].cor = "BRANCO";
+		} else {
+			g2d.setColor(g2d.getBackground());
+			g2d.fill(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+			g2d.fill(this.tabuleiro[linhaInicial + 1][colunaInicial - 1].quadrado);
+			g2d.fill(this.tabuleiro[linhaInicial + 1][colunaInicial + 1].quadrado);
+			g2d.setColor(Color.BLACK);
+			g2d.draw(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+			g2d.draw(this.tabuleiro[linhaInicial + 1][colunaInicial - 1].quadrado);
+			g2d.draw(this.tabuleiro[linhaInicial + 1][colunaInicial + 1].quadrado);
+			this.tabuleiro[linhaInicial][colunaInicial].cor = "BRANCO";
+			this.tabuleiro[linhaInicial + 1][colunaInicial - 1].cor = "BRANCO";
+			this.tabuleiro[linhaInicial + 1][colunaInicial + 1].cor = "BRANCO";
+		}
+		return;
 	}
 
 	char[][] insereAtualizaMatriz(QuadradoDeTabuleiro quadradoInicial, char tipoDeArma) {
@@ -252,5 +424,99 @@ class Tabuleiro extends JPanel {
 			break;
 		}
 		return this.matriz;
+	}
+
+	void selecionaCouracado(Graphics g, int linhaInicial, int colunaInicial, int orientacao, boolean deseleciona) {
+		int tamanho = 5;
+		Graphics2D g2d = (Graphics2D) g;
+		if (deseleciona) {
+			g2d.setColor(Color.LIGHT_GRAY);
+		} else {
+			g2d.setColor(Color.RED);
+		}
+		for (int i = 0; i < tamanho; i++) {
+			if (orientacao == 0) {
+				g2d.draw(this.tabuleiro[linhaInicial][colunaInicial + i].quadrado);
+			} else {
+				g2d.draw(this.tabuleiro[linhaInicial + i][colunaInicial].quadrado);
+			}
+		}
+		return;
+	}
+
+	void selecionaCruzador(Graphics g, int linhaInicial, int colunaInicial, int orientacao, boolean deseleciona) {
+		int tamanho = 4;
+		Graphics2D g2d = (Graphics2D) g;
+		if (deseleciona) {
+			g2d.setColor(Color.PINK);
+		} else {
+			g2d.setColor(Color.RED);
+		}
+		for (int i = 0; i < tamanho; i++) {
+			if (orientacao == 0) {
+				g2d.draw(this.tabuleiro[linhaInicial][colunaInicial + i].quadrado);
+			} else {
+				g2d.draw(this.tabuleiro[linhaInicial + i][colunaInicial].quadrado);
+			}
+		}
+		return;
+	}
+
+	void selecionaDestroyer(Graphics g, int linhaInicial, int colunaInicial, int orientacao, boolean deseleciona) {
+		int tamanho = 2;
+		Graphics2D g2d = (Graphics2D) g;
+		if (deseleciona) {
+			g2d.setColor(Color.GREEN);
+		} else {
+			g2d.setColor(Color.RED);
+		}
+		for (int i = 0; i < tamanho; i++) {
+			if (orientacao == 0) {
+				g2d.draw(this.tabuleiro[linhaInicial][colunaInicial + i].quadrado);
+			} else {
+				g2d.draw(this.tabuleiro[linhaInicial + i][colunaInicial].quadrado);
+			}
+		}
+		return;
+	}
+
+	void selecionaHidroaviao(Graphics g, int linhaInicial, int colunaInicial, int orientacao, boolean deseleciona) {
+		Graphics2D g2d = (Graphics2D) g;
+		if (deseleciona) {
+			g2d.setColor(Color.ORANGE);
+		} else {
+			g2d.setColor(Color.RED);
+		}
+		if (orientacao == 90) {
+			g2d.draw(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+			g2d.draw(this.tabuleiro[linhaInicial - 1][colunaInicial - 1].quadrado);
+			g2d.draw(this.tabuleiro[linhaInicial + 1][colunaInicial - 1].quadrado);
+
+		} else if (orientacao == 180) {
+			g2d.draw(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+			g2d.draw(this.tabuleiro[linhaInicial - 1][colunaInicial - 1].quadrado);
+			g2d.draw(this.tabuleiro[linhaInicial - 1][colunaInicial + 1].quadrado);
+
+		} else if (orientacao == 270) {
+			g2d.draw(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+			g2d.draw(this.tabuleiro[linhaInicial - 1][colunaInicial + 1].quadrado);
+			g2d.draw(this.tabuleiro[linhaInicial + 1][colunaInicial + 1].quadrado);
+		} else {
+			g2d.draw(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+			g2d.draw(this.tabuleiro[linhaInicial + 1][colunaInicial - 1].quadrado);
+			g2d.draw(this.tabuleiro[linhaInicial + 1][colunaInicial + 1].quadrado);
+		}
+		return;
+	}
+
+	void selecionaSubmarino(Graphics g, int linhaInicial, int colunaInicial, boolean deseleciona) {
+		Graphics2D g2d = (Graphics2D) g;
+		if (deseleciona) {
+			g2d.setColor(Color.BLUE);
+		} else {
+			g2d.setColor(Color.RED);
+		}
+		g2d.draw(this.tabuleiro[linhaInicial][colunaInicial].quadrado);
+		return;
 	}
 }
