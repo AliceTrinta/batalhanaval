@@ -22,12 +22,12 @@ class Ataque {
 		if(tipoDeArma == '0') {
 			this.accessModel.pintarQuadrado(linha, coluna, "AZUL");
 		}
-		boolean afundou = this.accessModel.verificaSeAfundou(linha, coluna, tipoDeArma, nomeAtacado);
+		boolean afundou = this.accessModel.verificaSeAfundou(linha, coluna, tipoDeArma, nomeAtacante);
 		if(!afundou) {
 			this.accessModel.pintarQuadrado(linha, coluna, "ROSA");
 			return;
 		} else {
-			boolean vencedor = this.accessModel.verificaSeTodosAfundaram(nomeAtacado);
+			boolean vencedor = this.accessModel.verificaSeTodosAfundaram(nomeAtacante);
 			if(vencedor) {
 				this.accessModel.anunciaVencedor();
 			} else {

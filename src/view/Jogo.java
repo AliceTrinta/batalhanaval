@@ -104,6 +104,14 @@ class Jogo {
 								control.removeObserver(tela3);
 								control.criaTabuleiroDeDefesa(nomeJogador1);
 								control.criaTabuleiroDeDefesa(nomeJogador2);
+								
+								char[][] tabuleiroAtaque2 = control.tabuleiroAtaque(nomeJogador2);
+								char[][] tabuleiroDefesa2 = control.tabuleiroDefesa(nomeJogador2);
+								char[][] tabuleiroAtaque1 = control.tabuleiroAtaque(nomeJogador1);
+								char[][] tabuleiroDefesa1 = control.tabuleiroDefesa(nomeJogador1);
+								control.inicializaTabuleiroPrincipal(nomeJogador1, tabuleiroAtaque2, tabuleiroDefesa1, 1, 2, 5, 4, 3);
+								control.inicializaTabuleiroPrincipal(nomeJogador2, tabuleiroAtaque1, tabuleiroDefesa2, 1, 2, 5, 4, 3);
+								
 								comecarAtaques();
 
 							}

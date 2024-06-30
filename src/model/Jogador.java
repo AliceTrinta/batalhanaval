@@ -24,7 +24,7 @@ class Jogador {
 	void setTabuleiroAtaque(char[][] tabuleiro) {
 		this.tabuleiroAtaque = tabuleiro;
 	}
-	
+
 	char[][] getTabuleiroDefesa() {
 		return this.tabuleiroDefesa;
 	}
@@ -32,8 +32,10 @@ class Jogador {
 	void setTabuleiroDefesa(char[][] tabuleiro) {
 		this.tabuleiroDefesa = tabuleiro;
 	}
-	
-	void setTabuleiroPrincipal(char[][] tabuleiroAtaque, char[][] tabuleiroDefesa) {
-		this.tabuleiroPrincipal.inicializaDePartidaAnterior(tabuleiroAtaque, tabuleiroDefesa);
+
+	void setTabuleiroPrincipal(char[][] tabuleiroAtaque, char[][] tabuleiroDefesa, int couracadosRestantes,
+			int cruzadoresRestantes, int hidroavioesRestantes, int submarinosRestantes, int destroyersRestantes) {
+		this.tabuleiroPrincipal.inicializaDePartidaAnterior(tabuleiroAtaque, tabuleiroDefesa, couracadosRestantes,
+				cruzadoresRestantes, hidroavioesRestantes, submarinosRestantes, destroyersRestantes);
 	}
 }

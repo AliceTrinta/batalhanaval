@@ -19,17 +19,28 @@ class Tabuleiro {
 	Tabuleiro() {
 	}
 
-	void inicializaDePartidaAnterior(char[][] tabuleiroAtaque, char[][] tabuleiroDefesa) {
+	void inicializaDePartidaAnterior(char[][] tabuleiroAtaque, char[][] tabuleiroDefesa, int couracadosRestantes,
+			int cruzadoresRestantes, int hidroavioesRestantes, int submarinosRestantes, int destroyersRestantes) {
+		this.couracadoQtd = couracadosRestantes;
+		this.cruzadorQtd = cruzadoresRestantes;
+		this.hidroaviaoQtd = hidroavioesRestantes;
+		this.submarinoQtd = submarinosRestantes;
+		this.destroyerQtd = destroyersRestantes;
 		for (int i = 0; i < tabuleiroAtaque.length; i++) {
 			for (int j = 0; j < tabuleiroAtaque[i].length; j++) {
 				switch (tabuleiroAtaque[i][j]) {
 				case 'C':
-					if (this.couracado != null) {
-						if (tabuleiroAtaque[i + 1][j] == 'C') {
-							adicionarCouracado(i, j, 90);
-						} else {
-							adicionarCouracado(i, j, 0);
-						}
+					if (tabuleiroAtaque[i + 1][j] == 'C') {
+						adicionarCouracado(i, j, 90);
+						tabuleiroAtaque[i][j] = '0';
+						tabuleiroAtaque[i + 1][j] = '0';
+						tabuleiroAtaque[i + 2][j] = '0';
+						tabuleiroAtaque[i + 3][j] = '0';
+						tabuleiroAtaque[i + 4][j] = '0';
+
+					} else {
+						adicionarCouracado(i, j, 0);
+						j = j + 5;
 					}
 					break;
 				case 'c':
@@ -49,25 +60,43 @@ class Tabuleiro {
 						adicionarDestroyer(i, j, 90);
 						tabuleiroAtaque[i][j] = '0';
 						tabuleiroAtaque[i + 1][j] = '0';
-						tabuleiroAtaque[i + 2][j] = '0';
 					} else {
 						adicionarDestroyer(i, j, 0);
-						j = j + 3;
+						j = j + 2;
 					}
 					break;
 				case 's':
 					adicionarSubmarino(i, j);
 					break;
 				case 'h':
-					if(tabuleiroAtaque[i + 1][j - 1] == 'h' && tabuleiroAtaque[i + 1][j + 1] == 'h') {
-						adicionarHidroaviao(i, j, 0);
+					try {
+						if (tabuleiroAtaque[i + 1][j - 1] == 'h' && tabuleiroAtaque[i + 1][j + 1] == 'h') {
+							adicionarHidroaviao(i, j, 0);
+						}
+					} catch (Exception e) {
+
 					}
-				    else if (tabuleiroAtaque[i + 1][j - 1] == 'h' && tabuleiroAtaque[i - 1][j - 1] == 'h') {
-						adicionarHidroaviao(i, j, 90);
-					} else if (tabuleiroAtaque[i - 1][j - 1] == 'h' && tabuleiroAtaque[i - 1][j + 1] == 'h') {
-						adicionarHidroaviao(i, j, 180);
-					} else if (tabuleiroAtaque[i - 1][j + 1] == 'h' && tabuleiroAtaque[i + 1][j + 1] == 'h') {
-						adicionarHidroaviao(i, j, 270);
+					try {
+						if (tabuleiroAtaque[i + 1][j - 1] == 'h' && tabuleiroAtaque[i - 1][j - 1] == 'h') {
+							adicionarHidroaviao(i, j, 90);
+						}
+
+					} catch (Exception e) {
+
+					}
+					try {
+						if (tabuleiroAtaque[i - 1][j - 1] == 'h' && tabuleiroAtaque[i - 1][j + 1] == 'h') {
+							adicionarHidroaviao(i, j, 180);
+						}
+					} catch (Exception e) {
+
+					}
+					try {
+						if (tabuleiroAtaque[i - 1][j + 1] == 'h' && tabuleiroAtaque[i + 1][j + 1] == 'h') {
+							adicionarHidroaviao(i, j, 270);
+						}
+					} catch (Exception e) {
+
 					}
 					break;
 				}
@@ -84,15 +113,15 @@ class Tabuleiro {
 				}
 
 				if (cor != null) {
-					for(Submarino s : this.submarinos) {
+					for (Submarino s : this.submarinos) {
 						if (s.coordenadas.x == i && s.coordenadas.y == j) {
 							s.coordenadas.cor = "ROSA";
 							int index = this.submarinos.indexOf(s);
 							this.submarinos.set(index, s);
 						}
 					}
-					
-					if(this.couracado != null) {
+
+					if (this.couracado != null) {
 						for (QuadradoDeTabuleiro q : this.couracado.coordenadas) {
 							if (q.x == i && q.y == j) {
 								q.cor = "ROSA";
@@ -123,7 +152,7 @@ class Tabuleiro {
 							}
 						}
 					}
-					
+
 					for (Hidroaviao h : this.hidroavioes) {
 						int indexMacro = this.hidroavioes.indexOf(h);
 						for (QuadradoDeTabuleiro q : h.coordenadas) {
@@ -140,8 +169,8 @@ class Tabuleiro {
 	}
 
 	void adicionarCouracado(int i, int j, int orientacao) {
+		this.couracado = new Couracado(i, j);
 		if (orientacao == 90) {
-			this.couracado = new Couracado(i, j);
 			for (int k = 0; k < 5; k++) {
 				this.couracado.coordenadas.add(new QuadradoDeTabuleiro(i + k, j));
 			}

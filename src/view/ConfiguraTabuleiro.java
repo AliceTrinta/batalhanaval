@@ -236,7 +236,6 @@ class ConfiguraTabuleiro extends JFrame implements KeyListener, ObservadorConfig
 					}
 					return;
 				} else if (this.tabuleiro.getClass() == this.componenteAtual.getClass()) {
-					// TODO Nao permitir insercao de arma fora dos limites
 					QuadradoDeTabuleiro quadrado = this.tabuleiro.confirmaObjeto(clickPoint);
 					if (quadrado != null && this.armaSelecionada != null) {
 						if (this.armaSelecionada == "Couracado") {
@@ -368,7 +367,6 @@ class ConfiguraTabuleiro extends JFrame implements KeyListener, ObservadorConfig
 					}
 				}
 			}
-			// TODO Rotacionar armas e atualizar tabuleiro SALVAR ROTACAO EM VARIAVEL
 			else if (button == MouseEvent.BUTTON3 && this.tabuleiro.getClass() == this.componenteAtual.getClass()) {
 				if (this.posicaoFinal) {
 					if (this.armaSelecionada == "Couracado") {

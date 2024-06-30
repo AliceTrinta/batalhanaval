@@ -26,17 +26,79 @@ public class AccessModel {
 		return;
 	}
 
+	public void inicializaTabuleiroPrincipal(String nomeJogador, char[][] tabuleiroAtaque, char[][] tabuleiroDefesa,
+			int couracadosRestantes, int cruzadoresRestantes, int hidroavioesRestantes, int submarinosRestantes,
+			int destroyersRestantes) {
+		if (this.dados.jogador1.getNome().equals(nomeJogador)) {
+			this.dados.jogador2.setTabuleiroPrincipal(tabuleiroAtaque, tabuleiroDefesa, couracadosRestantes,
+					cruzadoresRestantes, hidroavioesRestantes, submarinosRestantes, destroyersRestantes);
+		} else if (this.dados.jogador2.getNome().equals(nomeJogador)) {
+			this.dados.jogador2.setTabuleiroPrincipal(tabuleiroAtaque, tabuleiroDefesa, couracadosRestantes,
+					cruzadoresRestantes, hidroavioesRestantes, submarinosRestantes, destroyersRestantes);
+		}
+		return;
+	}
+
 	public void inicializaComDadosDeArquivo(String nomeJogador1, String nomeJogador2, char[][] tabuleiroAtaque1,
-			char[][] tabuleiroDefesa1, char[][] tabuleiroAtaque2, char[][] tabuleiroDefesa2) {
+			char[][] tabuleiroDefesa1, String couracadosRestantes1, String cruzadoresRestantes1,
+			String hidroavioesRestantes1, String submarinosRestantes1, String destroyersRestantes1,
+			char[][] tabuleiroAtaque2, char[][] tabuleiroDefesa2, String couracadosRestantes2,
+			String cruzadoresRestantes2, String hidroavioesRestantes2, String submarinosRestantes2,
+			String destroyersRestantes2) {
+
+		int couracados1 = Integer.parseInt(couracadosRestantes1);
+		int cruzadores1 = Integer.parseInt(cruzadoresRestantes1);
+		;
+		int hidroavioes1 = Integer.parseInt(hidroavioesRestantes1);
+		;
+		int submarinos1 = Integer.parseInt(submarinosRestantes1);
+		;
+		int destroyers1 = Integer.parseInt(destroyersRestantes1);
+		;
+		int couracados2 = Integer.parseInt(couracadosRestantes2);
+		;
+		int cruzadores2 = Integer.parseInt(cruzadoresRestantes2);
+		;
+		int hidroavioes2 = Integer.parseInt(hidroavioesRestantes2);
+		;
+		int submarinos2 = Integer.parseInt(submarinosRestantes2);
+		;
+		int destroyers2 = Integer.parseInt(destroyersRestantes2);
+		;
+
 		this.dados.jogador1.setNome(nomeJogador1);
 		this.dados.jogador2.setNome(nomeJogador2);
 		this.dados.jogador1.setTabuleiroAtaque(tabuleiroAtaque1);
 		this.dados.jogador1.setTabuleiroDefesa(tabuleiroDefesa1);
-		this.dados.jogador1.setTabuleiroPrincipal(tabuleiroAtaque2, tabuleiroDefesa1);
+		this.dados.jogador1.setTabuleiroPrincipal(tabuleiroAtaque2, tabuleiroDefesa1, couracados1, cruzadores1,
+				hidroavioes1, submarinos1, destroyers1);
 		this.dados.jogador2.setTabuleiroAtaque(tabuleiroAtaque2);
 		this.dados.jogador2.setTabuleiroDefesa(tabuleiroDefesa2);
-		this.dados.jogador1.setTabuleiroPrincipal(tabuleiroAtaque1, tabuleiroDefesa2);
+		this.dados.jogador2.setTabuleiroPrincipal(tabuleiroAtaque1, tabuleiroDefesa2, couracados2, cruzadores2,
+				hidroavioes2, submarinos2, destroyers2);
 		return;
+	}
+
+	public Integer pegaNaviosRestantes(String nomeJogador, char navio) {
+		Tabuleiro tabuleiro = new Tabuleiro();
+		if (this.dados.jogador1.getNome().equals(nomeJogador)) {
+			tabuleiro = this.dados.jogador1.tabuleiroPrincipal;
+		} else if (this.dados.jogador2.getNome().equals(nomeJogador)) {
+			tabuleiro = this.dados.jogador2.tabuleiroPrincipal;
+		}
+		switch (navio) {
+		case 'C':
+			return tabuleiro.couracadoQtd;
+		case 'c':
+			return tabuleiro.cruzadorQtd;
+		case 'd':
+			return tabuleiro.destroyerQtd;
+		case 's':
+			return tabuleiro.submarinoQtd;
+		case 'h':
+			return tabuleiro.hidroaviaoQtd;
+		}
+		return null;
 	}
 
 	public void adicionaObservador(ObservadorConfiguraTabuleiro observador) {
@@ -336,8 +398,8 @@ public class AccessModel {
 		return novaMatriz;
 	}
 
-	public boolean verificaSeAfundou(int linha, int coluna, char tipoDeArma, String nomeAtacado) {
-		Tabuleiro tabuleiro = this.dados.getTabuleiroPrincipal(nomeAtacado);
+	public boolean verificaSeAfundou(int linha, int coluna, char tipoDeArma, String nomeAtacante) {
+		Tabuleiro tabuleiro = this.dados.getTabuleiroPrincipal(nomeAtacante);
 		boolean result = false;
 		switch (tipoDeArma) {
 		case 'C':
@@ -449,12 +511,12 @@ public class AccessModel {
 		default:
 			break;
 		}
-		this.dados.setTabuleiroPrincipal(tabuleiro, nomeAtacado);
+		this.dados.setTabuleiroPrincipal(tabuleiro, nomeAtacante);
 		return !result;
 	}
 
-	public boolean verificaSeTodosAfundaram(String nomeAtacado) {
-		Tabuleiro tabuleiro = this.dados.getTabuleiroPrincipal(nomeAtacado);
+	public boolean verificaSeTodosAfundaram(String nomeAtacante) {
+		Tabuleiro tabuleiro = this.dados.getTabuleiroPrincipal(nomeAtacante);
 		if (tabuleiro.couracadoQtd == 0 && tabuleiro.cruzadorQtd == 0 && tabuleiro.destroyerQtd == 0
 				&& tabuleiro.hidroaviaoQtd == 0 && tabuleiro.submarinoQtd == 0) {
 			return true;

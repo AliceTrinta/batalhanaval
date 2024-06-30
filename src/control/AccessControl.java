@@ -76,4 +76,11 @@ public class AccessControl {
 	public Integer pegaOrientacao(int linha, int coluna, String nomeJogador, char tipoDeArma, char[][] matriz){
 		return jogo.pegaOrientacao(linha, coluna, nomeJogador, tipoDeArma, matriz);
 	}
+	
+	public void inicializaTabuleiroPrincipal(String nomeJogador, char[][] tabuleiroAtaque, char[][] tabuleiroDefesa,
+			int couracadosRestantes, int cruzadoresRestantes, int hidroavioesRestantes, int submarinosRestantes,
+			int destroyersRestantes) {
+		jogo.inicializaTabuleiroPrincipal(
+				nomeJogador, tabuleiroAtaque, tabuleiroDefesa, couracadosRestantes, cruzadoresRestantes, hidroavioesRestantes, submarinosRestantes, destroyersRestantes);
+	}
 }

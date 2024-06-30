@@ -46,7 +46,7 @@ class Cruzador {
 		if (orientacao == 90) {
 			return linhaInicial + 3 < 15 && casasAdajacentes(matriz, linhaInicial, colunaInicial, orientacao);
 		} else {
-			return colunaInicial + 3 <= 15 && casasAdajacentes(matriz, linhaInicial, colunaInicial, orientacao);
+			return colunaInicial + 3 < 15 && casasAdajacentes(matriz, linhaInicial, colunaInicial, orientacao);
 		}
 	}
 }

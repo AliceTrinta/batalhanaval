@@ -43,12 +43,12 @@ class Destroyer {
 	}
 
 	boolean posicaoValida(char[][] matriz, int linhaInicial, int colunaInicial, int orientacao) {
-		if (orientacao == 90) {
-			return linhaInicial >= 0 && colunaInicial >= 0 && colunaInicial < 15 && linhaInicial + 1 < 15
-					&& casasAdajacentes(matriz, linhaInicial, colunaInicial, orientacao);
-		} else {
-			return linhaInicial >= 0 && linhaInicial < 15 && colunaInicial >= 0 && colunaInicial < 15
-					&& colunaInicial + 1 <= 15 && casasAdajacentes(matriz, linhaInicial, colunaInicial, orientacao);
-		}
+	    if (orientacao == 90) {
+	        return linhaInicial >= 0 && linhaInicial + 1 < 15 && colunaInicial >= 0 && colunaInicial < 15
+	                && casasAdajacentes(matriz, linhaInicial, colunaInicial, orientacao);
+	    } else {
+	        return linhaInicial >= 0 && linhaInicial < 15 && colunaInicial >= 0 && colunaInicial + 1 < 15
+	                && casasAdajacentes(matriz, linhaInicial, colunaInicial, orientacao);
+	    }
 	}
 }
