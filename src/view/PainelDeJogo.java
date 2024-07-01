@@ -141,7 +141,12 @@ class PainelDeJogo extends JPanel implements MouseListener, ObservadorConfiguraT
 		Point clickPoint = e.getPoint();
 		Component source = e.getComponent().getComponentAt(clickPoint).getComponentAt(clickPoint);
 		this.componenteAtual = null;
-
+		this.ataques = this.ataques + 1;
+		if(this.ataques > 3) {
+			JOptionPane.showMessageDialog(this, "Voce ja realizou todos os seus ataques! Passe sua vez");
+			return;
+		}
+		
 		if (source == painelTabuleiroDefesa) {
 			Point convertedPoint = SwingUtilities.convertPoint(e.getComponent().getComponentAt(clickPoint), clickPoint,
 					painelTabuleiroDefesa);
@@ -150,9 +155,9 @@ class PainelDeJogo extends JPanel implements MouseListener, ObservadorConfiguraT
 			QuadradoDeTabuleiro quadrado = this.tabuleiroDefesa.confirmaObjeto(convertedPoint);
 			if (quadrado != null) {
 				control.realizaAtaque((int) quadrado.linhaInicial, (int) quadrado.colunaInicial, this.nomeJogador);
-				this.ataques = this.ataques + 1;
 				return;
 			}
+			this.ataques = this.ataques - 1;
 		}
 	}
 

@@ -19,8 +19,17 @@ class Tabuleiro {
 	Tabuleiro() {
 	}
 
-	void inicializaDePartidaAnterior(char[][] tabuleiroAtaque, char[][] tabuleiroDefesa, int couracadosRestantes,
+	void inicializaDePartidaAnterior(char[][] ta, char[][] td, int couracadosRestantes,
 			int cruzadoresRestantes, int hidroavioesRestantes, int submarinosRestantes, int destroyersRestantes) {
+		
+        char[][] tabuleiroAtaque = new char[ta.length][];
+        for (int i = 0; i < ta.length; i++) {
+            tabuleiroAtaque[i] = ta[i].clone();
+        }
+        char[][] tabuleiroDefesa = new char[td.length][];
+        for (int i = 0; i < td.length; i++) {
+            tabuleiroDefesa[i] = td[i].clone();
+        }
 		this.couracadoQtd = couracadosRestantes;
 		this.cruzadorQtd = cruzadoresRestantes;
 		this.hidroaviaoQtd = hidroavioesRestantes;

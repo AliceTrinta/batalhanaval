@@ -60,7 +60,11 @@ class Jogo {
 						nomeJogador1 = jogadores.get(0);
 						nomeJogador2 = jogadores.get(1);
 					}
-					comecarAtaques();
+					char[][] tabuleiroAtaque2 = control.tabuleiroAtaque(nomeJogador2);
+					char[][] tabuleiroDefesa2 = control.tabuleiroDefesa(nomeJogador2);
+					char[][] tabuleiroAtaque1 = control.tabuleiroAtaque(nomeJogador1);
+					char[][] tabuleiroDefesa1 = control.tabuleiroDefesa(nomeJogador1);
+					comecarAtaques(tabuleiroAtaque1, tabuleiroDefesa1, tabuleiroAtaque2, tabuleiroDefesa2);
 				}
 			}
 		});
@@ -112,7 +116,7 @@ class Jogo {
 								control.inicializaTabuleiroPrincipal(nomeJogador1, tabuleiroAtaque2, tabuleiroDefesa1, 1, 2, 5, 4, 3);
 								control.inicializaTabuleiroPrincipal(nomeJogador2, tabuleiroAtaque1, tabuleiroDefesa2, 1, 2, 5, 4, 3);
 								
-								comecarAtaques();
+								comecarAtaques(tabuleiroAtaque1, tabuleiroDefesa1, tabuleiroAtaque2, tabuleiroDefesa2);
 
 							}
 						});
@@ -122,19 +126,14 @@ class Jogo {
 		});
 	}
 
-	void comecarAtaques() {
-		char[][] tabuleiroAtaque1 = control.tabuleiroAtaque(nomeJogador1);
-		char[][] tabuleiroDefesa1 = control.tabuleiroDefesa(nomeJogador1);
-
-		char[][] tabuleiroAtaque2 = control.tabuleiroAtaque(nomeJogador2);
-		char[][] tabuleiroDefesa2 = control.tabuleiroDefesa(nomeJogador2);
-
+	void comecarAtaques(char[][] ta1, char[][] td1, char[][] ta2, char[][] td2) {
+		
 		JFrame frame = new JFrame("Batalha Naval");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1600, 1000);
 
-		PainelDeJogo painelJogador1 = new PainelDeJogo(tabuleiroAtaque1, tabuleiroDefesa1, nomeJogador1);
-		PainelDeJogo painelJogador2 = new PainelDeJogo(tabuleiroAtaque2, tabuleiroDefesa2, nomeJogador2);
+		PainelDeJogo painelJogador1 = new PainelDeJogo(ta1, td1, nomeJogador1);
+		PainelDeJogo painelJogador2 = new PainelDeJogo(ta2, td2, nomeJogador2);
 
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("Sair da Partida");

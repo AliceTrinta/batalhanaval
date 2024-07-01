@@ -30,7 +30,7 @@ public class AccessModel {
 			int couracadosRestantes, int cruzadoresRestantes, int hidroavioesRestantes, int submarinosRestantes,
 			int destroyersRestantes) {
 		if (this.dados.jogador1.getNome().equals(nomeJogador)) {
-			this.dados.jogador2.setTabuleiroPrincipal(tabuleiroAtaque, tabuleiroDefesa, couracadosRestantes,
+			this.dados.jogador1.setTabuleiroPrincipal(tabuleiroAtaque, tabuleiroDefesa, couracadosRestantes,
 					cruzadoresRestantes, hidroavioesRestantes, submarinosRestantes, destroyersRestantes);
 		} else if (this.dados.jogador2.getNome().equals(nomeJogador)) {
 			this.dados.jogador2.setTabuleiroPrincipal(tabuleiroAtaque, tabuleiroDefesa, couracadosRestantes,
