@@ -1,20 +1,20 @@
 package model;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-class DestroyerTest {
+public class DestroyerTest {
     
 	Destroyer destroyer;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         destroyer = new Destroyer(5, 5);
     }
 
     @Test
-    void testConstructorAndInitialValues() {
+    public void testConstructorAndInitialValues() {
         assertEquals(5, destroyer.linhaInicial);
         assertEquals(5, destroyer.colunaInicial);
         assertFalse(destroyer.afundou);
@@ -22,7 +22,7 @@ class DestroyerTest {
     }
 
     @Test
-    void testCasasAdajacentesOrientacao90SemObstaculos() {
+    public void testCasasAdajacentesOrientacao90SemObstaculos() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -33,7 +33,7 @@ class DestroyerTest {
     }
 
     @Test
-    void testCasasAdajacentesOrientacao90ComObstaculos() {
+    public void testCasasAdajacentesOrientacao90ComObstaculos() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -45,7 +45,7 @@ class DestroyerTest {
     }
 
     @Test
-    void testCasasAdajacentesOrientacao0SemObstaculos() {
+    public void testCasasAdajacentesOrientacao0SemObstaculos() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -56,7 +56,7 @@ class DestroyerTest {
     }
 
     @Test
-    void testCasasAdajacentesOrientacao0ComObstaculos() {
+    public void testCasasAdajacentesOrientacao0ComObstaculos() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -68,7 +68,7 @@ class DestroyerTest {
     }
 
     @Test
-    void testPosicaoValidaOrientacao90DentroDosLimites() {
+    public void testPosicaoValidaOrientacao90DentroDosLimites() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -79,7 +79,7 @@ class DestroyerTest {
     }
 
     @Test
-    void testPosicaoValidaOrientacao90ForaDosLimites() {
+    public void testPosicaoValidaOrientacao90ForaDosLimites() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -90,7 +90,7 @@ class DestroyerTest {
     }
 
     @Test
-    void testPosicaoValidaOrientacao0DentroDosLimites() {
+    public void testPosicaoValidaOrientacao0DentroDosLimites() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -101,7 +101,7 @@ class DestroyerTest {
     }
 
     @Test
-    void testPosicaoValidaOrientacao0ForaDosLimites() {
+    public void testPosicaoValidaOrientacao0ForaDosLimites() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {

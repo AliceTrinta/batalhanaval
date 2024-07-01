@@ -1,23 +1,23 @@
 package model;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class TabuleiroTest {
-    private Tabuleiro tabuleiro;
-    private char[][] tabuleiroAtaque;
-    private char[][] tabuleiroDefesa;
+    Tabuleiro tabuleiro;
+    char[][] tabuleiroAtaque;
+    char[][] tabuleiroDefesa;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         tabuleiro = new Tabuleiro();
         tabuleiroAtaque = new char[15][15];
         tabuleiroDefesa = new char[15][15];
     }
 
     @Test
-    void testInicializaDePartidaAnteriorCouracadoHorizontal() {
+    public void testInicializaDePartidaAnteriorCouracadoHorizontal() {
         // Monta o tabuleiro de ataque com um couraçado horizontal
         tabuleiroAtaque[5][5] = 'C';
         tabuleiroAtaque[5][6] = 'C';
@@ -35,7 +35,7 @@ public class TabuleiroTest {
     }
 
     @Test
-    void testInicializaDePartidaAnteriorCouracadoVertical() {
+    public void testInicializaDePartidaAnteriorCouracadoVertical() {
         // Monta o tabuleiro de ataque com um couraçado vertical
         tabuleiroAtaque[5][5] = 'C';
         tabuleiroAtaque[6][5] = 'C';
@@ -53,7 +53,7 @@ public class TabuleiroTest {
     }
 
     @Test
-    void testInicializaDePartidaAnteriorCruzadorHorizontal() {
+    public void testInicializaDePartidaAnteriorCruzadorHorizontal() {
         // Monta o tabuleiro de ataque com um cruzador horizontal
         tabuleiroAtaque[5][5] = 'c';
         tabuleiroAtaque[5][6] = 'c';
@@ -71,7 +71,7 @@ public class TabuleiroTest {
     }
 
     @Test
-    void testInicializaDePartidaAnteriorCruzadorVertical() {
+    public void testInicializaDePartidaAnteriorCruzadorVertical() {
         // Monta o tabuleiro de ataque com um cruzador vertical
         tabuleiroAtaque[5][5] = 'c';
         tabuleiroAtaque[6][5] = 'c';
@@ -90,7 +90,7 @@ public class TabuleiroTest {
 
 
     @Test
-    void testInicializaDePartidaAnteriorDestroyerVertical() {
+    public void testInicializaDePartidaAnteriorDestroyerVertical() {
         // Monta o tabuleiro de ataque com um destroyer vertical
         tabuleiroAtaque[5][5] = 'd';
         tabuleiroAtaque[6][5] = 'd';
@@ -106,7 +106,7 @@ public class TabuleiroTest {
     }
 
     @Test
-    void testInicializaDePartidaAnteriorSubmarino() {
+    public void testInicializaDePartidaAnteriorSubmarino() {
         // Monta o tabuleiro de ataque com um submarino
         tabuleiroAtaque[5][5] = 's';
 
@@ -120,7 +120,7 @@ public class TabuleiroTest {
     }
 
     @Test
-    void testInicializaDePartidaAnteriorHidroaviao() {
+    public void testInicializaDePartidaAnteriorHidroaviao() {
         // Monta o tabuleiro de ataque com um hidroavião
         tabuleiroAtaque[5][5] = 'h';
         tabuleiroAtaque[4][4] = 'h';

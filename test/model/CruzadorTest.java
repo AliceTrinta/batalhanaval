@@ -1,20 +1,20 @@
 package model;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-class CruzadorTest {
+public class CruzadorTest {
 
-    private Cruzador cruzador;
+    Cruzador cruzador;
 
-    @BeforeEach
-    void setUp() {
+    @Before
+    public void setUp() {
         cruzador = new Cruzador();
     }
 
     @Test
-    void testCasasAdajacentesOrientacao90Positivo() {
+    public void testCasasAdajacentesOrientacao90Positivo() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -25,7 +25,7 @@ class CruzadorTest {
     }
 
     @Test
-    void testCasasAdajacentesOrientacao90Negativo() {
+    public void testCasasAdajacentesOrientacao90Negativo() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -37,7 +37,7 @@ class CruzadorTest {
     }
 
     @Test
-    void testCasasAdajacentesOrientacao0Positivo() {
+    public void testCasasAdajacentesOrientacao0Positivo() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -48,7 +48,7 @@ class CruzadorTest {
     }
 
     @Test
-    void testCasasAdajacentesOrientacao0Negativo() {
+    public void testCasasAdajacentesOrientacao0Negativo() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -60,7 +60,7 @@ class CruzadorTest {
     }
 
     @Test
-    void testPosicaoValidaOrientacao90Positivo() {
+    public void testPosicaoValidaOrientacao90Positivo() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -71,7 +71,7 @@ class CruzadorTest {
     }
 
     @Test
-    void testPosicaoValidaOrientacao90Negativo() {
+    public void testPosicaoValidaOrientacao90Negativo() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -83,7 +83,7 @@ class CruzadorTest {
     }
 
     @Test
-    void testPosicaoValidaOrientacao0Positivo() {
+    public void testPosicaoValidaOrientacao0Positivo() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -94,7 +94,7 @@ class CruzadorTest {
     }
 
     @Test
-    void testPosicaoValidaOrientacao0Negativo() {
+    public void testPosicaoValidaOrientacao0Negativo() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -106,7 +106,7 @@ class CruzadorTest {
     }
 
     @Test
-    void testPosicaoValidaOrientacao90ForaDosLimites() {
+    public void testPosicaoValidaOrientacao90ForaDosLimites() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
@@ -117,7 +117,7 @@ class CruzadorTest {
     }
 
     @Test
-    void testPosicaoValidaOrientacao0ForaDosLimites() {
+    public void testPosicaoValidaOrientacao0ForaDosLimites() {
         char[][] matriz = new char[15][15];
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
